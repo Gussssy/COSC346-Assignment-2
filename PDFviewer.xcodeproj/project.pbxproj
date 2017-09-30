@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1E0B531F7F1E0D00F6B5E5 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1E0B521F7F1E0D00F6B5E5 /* Quartz.framework */; };
 		4C3BD08B1F7CD4A00067DFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD08A1F7CD4A00067DFBE /* AppDelegate.swift */; };
-		4C3BD08D1F7CD4A00067DFBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD08C1F7CD4A00067DFBE /* ViewController.swift */; };
 		4C3BD08F1F7CD4A00067DFBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD08E1F7CD4A00067DFBE /* Assets.xcassets */; };
-		4C3BD0921F7CD4A00067DFBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD0901F7CD4A00067DFBE /* Main.storyboard */; };
-		4C3BD09D1F7CD4A00067DFBE /* PDFviewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD09C1F7CD4A00067DFBE /* PDFviewerTests.swift */; };
 		4C3BD0A81F7CD4A00067DFBE /* PDFviewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD0A71F7CD4A00067DFBE /* PDFviewerUITests.swift */; };
+		4C3BD0B61F7CD5140067DFBE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */; };
+		4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,18 +33,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C1E0B521F7F1E0D00F6B5E5 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4C3BD0871F7CD49F0067DFBE /* PDFviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3BD08A1F7CD4A00067DFBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C3BD08C1F7CD4A00067DFBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C3BD08E1F7CD4A00067DFBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4C3BD0911F7CD4A00067DFBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C3BD0931F7CD4A00067DFBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3BD0981F7CD4A00067DFBE /* PDFviewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFviewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C3BD09C1F7CD4A00067DFBE /* PDFviewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFviewerTests.swift; sourceTree = "<group>"; };
-		4C3BD09E1F7CD4A00067DFBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3BD0A31F7CD4A00067DFBE /* PDFviewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFviewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3BD0A71F7CD4A00067DFBE /* PDFviewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFviewerUITests.swift; sourceTree = "<group>"; };
 		4C3BD0A91F7CD4A00067DFBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lecture1.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1E0B531F7F1E0D00F6B5E5 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,13 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C1E0B511F7F1E0D00F6B5E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C1E0B521F7F1E0D00F6B5E5 /* Quartz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C3BD07E1F7CD49F0067DFBE = {
 			isa = PBXGroup;
 			children = (
+				4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */,
 				4C3BD0891F7CD49F0067DFBE /* PDFviewer */,
-				4C3BD09B1F7CD4A00067DFBE /* PDFviewerTests */,
 				4C3BD0A61F7CD4A00067DFBE /* PDFviewerUITests */,
 				4C3BD0881F7CD49F0067DFBE /* Products */,
+				4C1E0B511F7F1E0D00F6B5E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,21 +105,11 @@
 			isa = PBXGroup;
 			children = (
 				4C3BD08A1F7CD4A00067DFBE /* AppDelegate.swift */,
-				4C3BD08C1F7CD4A00067DFBE /* ViewController.swift */,
 				4C3BD08E1F7CD4A00067DFBE /* Assets.xcassets */,
-				4C3BD0901F7CD4A00067DFBE /* Main.storyboard */,
 				4C3BD0931F7CD4A00067DFBE /* Info.plist */,
+				4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */,
 			);
 			path = PDFviewer;
-			sourceTree = "<group>";
-		};
-		4C3BD09B1F7CD4A00067DFBE /* PDFviewerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C3BD09C1F7CD4A00067DFBE /* PDFviewerTests.swift */,
-				4C3BD09E1F7CD4A00067DFBE /* Info.plist */,
-			);
-			path = PDFviewerTests;
 			sourceTree = "<group>";
 		};
 		4C3BD0A61F7CD4A00067DFBE /* PDFviewerUITests */ = {
@@ -229,8 +228,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */,
 				4C3BD08F1F7CD4A00067DFBE /* Assets.xcassets in Resources */,
-				4C3BD0921F7CD4A00067DFBE /* Main.storyboard in Resources */,
+				4C3BD0B61F7CD5140067DFBE /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3BD08D1F7CD4A00067DFBE /* ViewController.swift in Sources */,
 				4C3BD08B1F7CD4A00067DFBE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +263,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3BD09D1F7CD4A00067DFBE /* PDFviewerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,17 +288,6 @@
 			targetProxy = 4C3BD0A41F7CD4A00067DFBE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4C3BD0901F7CD4A00067DFBE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C3BD0911F7CD4A00067DFBE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4C3BD0AA1F7CD4A00067DFBE /* Debug */ = {
@@ -498,6 +485,7 @@
 				4C3BD0AE1F7CD4A00067DFBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C3BD0AF1F7CD4A00067DFBE /* Build configuration list for PBXNativeTarget "PDFviewerTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +494,7 @@
 				4C3BD0B11F7CD4A00067DFBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C3BD0B21F7CD4A00067DFBE /* Build configuration list for PBXNativeTarget "PDFviewerUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +503,7 @@
 				4C3BD0B41F7CD4A00067DFBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
