@@ -686,12 +686,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="680" height="461"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <pdfView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90p-QT-D8J">
+                    <pdfView fixedFrame="YES" autoScales="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90p-QT-D8J">
                         <rect key="frame" x="116" y="33" width="534" height="402"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </pdfView>
                     <pdfThumbnailView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hew-ta-wHt" colorLabel="IBBuiltInLabel-Blue">
-                        <rect key="frame" x="20" y="235" width="75" height="200"/>
+                        <rect key="frame" x="16" y="235" width="79" height="167"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <size key="thumbnailSize" width="64" height="64"/>
                     </pdfThumbnailView>
@@ -717,6 +717,14 @@
                             <action selector="previousPage:" target="26q-3P-Sgf" id="RSJ-AZ-jsp"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-gD-teo">
+                        <rect key="frame" x="9" y="68" width="102" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Next Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cs2-TQ-xGf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-Pz-wTM">
                         <rect key="frame" x="9" y="42" width="104" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -728,16 +736,16 @@
                     <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-Bb-jvB">
                         <rect key="frame" x="16" y="133" width="90" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" drawsBackground="YES" id="dR6-rr-Ups">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" placeholderString="Page Num" drawsBackground="YES" id="dR6-rr-Ups">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfE-yM-lQy">
-                        <rect key="frame" x="15" y="101" width="90" height="25"/>
+                        <rect key="frame" x="15" y="101" width="90" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Jump" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A08-GD-rBi">
+                        <buttonCell key="cell" type="push" title="Jump" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="A08-GD-rBi">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -745,17 +753,30 @@
                             <action selector="jumpToPage:" target="26q-3P-Sgf" id="F4Q-rG-oCV"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-gD-teo">
-                        <rect key="frame" x="9" y="68" width="102" height="32"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIt-cq-80v">
+                        <rect key="frame" x="62" y="410" width="50" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Next Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cs2-TQ-xGf">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="page1" id="2s2-UQ-Vc6">
                             <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="changePageDisplay:" target="26q-3P-Sgf" id="K5a-Ol-rkZ"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA5-gW-yxM">
+                        <rect key="frame" x="7" y="410" width="55" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lecture1" id="pUH-Nw-aqx">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="418" y="-32.5"/>
+            <point key="canvasLocation" x="837" y="-23.5"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
@@ -763,8 +784,10 @@
                 <outlet property="jumpButton" destination="wfE-yM-lQy" id="xq3-mb-Ppq"/>
                 <outlet property="lastLectureButton" destination="kTR-Pz-wTM" id="XFY-Hh-4Gv"/>
                 <outlet property="lastPageButton" destination="I1R-Pq-To2" id="A0Y-TK-3x1"/>
+                <outlet property="lectureLabel" destination="bA5-gW-yxM" id="hBb-A6-XZn"/>
                 <outlet property="nextLectureButton" destination="1XX-gD-teo" id="YRJ-5B-Hgd"/>
                 <outlet property="nextPageButton" destination="aQy-dC-POe" id="QYg-d5-Qah"/>
+                <outlet property="pageLabel" destination="GIt-cq-80v" id="N1o-Ha-A3N"/>
                 <outlet property="pageNumberEntry" destination="bcW-Bb-jvB" id="xJB-dT-flG"/>
                 <outlet property="pdfView" destination="90p-QT-D8J" id="jRD-Hb-fSq"/>
                 <outlet property="screen" destination="90p-QT-D8J" id="fxg-hL-A5E"/>

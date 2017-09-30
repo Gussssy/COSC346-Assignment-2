@@ -21,7 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //let pdf = PDFDocument(url: url)
         screen.allowsDragging = true
         //screen.document = pdf
-        document = screen.document
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -47,12 +46,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func nextPage(_ sender: Any) {
         if screen.canGoToNextPage(){
             screen.goToNextPage(_ : Any)
+            pageNum += 1
+            changePageDisplay(_ : (Any).self)
         }
     }
     
     @IBAction func previousPage(_ sender: Any) {
         if screen.canGoToPreviousPage(){
             screen.goToPreviousPage(_ : Any)
+            pageNum += -1
+            changePageDisplay(_ : (Any).self)
         }
 
     }
@@ -61,12 +64,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var jumpButton: NSButton!
     
     @IBAction func jumpToPage(_ sender: Any) {
-        let num = Int(pageNumberEntry.imageTitle())
-        if  num! >= (document!.pageCount){
-            screen.go(to: document!.page(at: num!)!)
+        document = screen.document
+        print(pageNumberEntry.stringValue)
+        let num = Int(pageNumberEntry.stringValue)
+        if  num! <= (document!.pageCount){
+            //screen.go(to: document!.page(at: num!)!)
+            screen.goToFirstPage(_ : Any)
+            pageNum = num!
+            var i = 0
+            while i < num!{
+                print(i)
+                screen.goToNextPage(_: (Any).self)
+                i+=1
+            }
+            changePageDisplay(_ : (Any).self)
         }
     }
     
     
+    @IBOutlet weak var lectureLabel: NSTextField!
+    
+    @IBOutlet weak var pageLabel: NSTextField!
+    var pageNum = 1
+    
+    
+    @IBAction func changePageDisplay(_ sender: Any) {
+        pageLabel.stringValue = "page" + String(pageNum)
+    }
 }
 
