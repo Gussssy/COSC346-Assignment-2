@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  PDFviewer
 //
-//  Created by Tristan Gardner on 9/28/17.
+//  Created by Tristan Gardner and maybe Angus 9/28/17.
 //  Copyright © 2017 Tristan Gardner. All rights reserved.
 //
 
