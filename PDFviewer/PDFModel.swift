@@ -33,7 +33,7 @@ public class PDFModel{
     
     func jump(screen: PDFView, num: Int){
         screen.goToFirstPage(_ : (Any).self)
-        var i = 0
+        var i = 1
         while i < num{
             print(i)
             screen.goToNextPage(_: (Any).self)
@@ -45,5 +45,18 @@ public class PDFModel{
         if screen.canZoomIn(){
             screen.zoomIn(_: (Any).self)
         }
+    }
+    
+    func zoomOut(screen: PDFView){
+        if screen.canZoomOut(){
+            screen.zoomOut(_: (Any).self)
+        }
+    }
+    
+    func annotate(screen: PDFView, comment: String){
+        let page = screen.currentPage
+        let annotation = PDFAnnotation()
+        annotation.page = page
+        page?.addAnnotation(annotation)
     }
 }

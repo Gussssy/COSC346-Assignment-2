@@ -677,26 +677,21 @@
             </items>
             <point key="canvasLocation" x="179" y="493"/>
         </menu>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="hDp-XD-8MV">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="hDp-XD-8MV">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="283" y="305" width="680" height="461"/>
+            <rect key="contentRect" x="283" y="305" width="685" height="454"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="4ix-Rd-Qke">
-                <rect key="frame" x="0.0" y="0.0" width="680" height="461"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="685" height="454"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <pdfView fixedFrame="YES" autoScales="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90p-QT-D8J">
-                        <rect key="frame" x="116" y="33" width="534" height="402"/>
+                        <rect key="frame" x="116" y="26" width="534" height="402"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </pdfView>
-                    <pdfThumbnailView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hew-ta-wHt" colorLabel="IBBuiltInLabel-Blue">
-                        <rect key="frame" x="16" y="235" width="79" height="167"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <size key="thumbnailSize" width="64" height="64"/>
-                    </pdfThumbnailView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-dC-POe">
-                        <rect key="frame" x="14" y="187" width="102" height="32"/>
+                        <rect key="frame" x="1" y="170" width="102" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SJi-Ok-yey">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -706,8 +701,30 @@
                             <action selector="nextPage:" target="26q-3P-Sgf" id="lXU-mp-qoR"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9X2-vw-Em6">
+                        <rect key="frame" x="3" y="123" width="49" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GX4-mI-AeY">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="zoomInSender:" target="26q-3P-Sgf" id="gee-it-sBi"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbO-Eq-Ywm">
+                        <rect key="frame" x="52" y="123" width="47" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aMf-dQ-9fe">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="zoomOutWithSender:" target="26q-3P-Sgf" id="Cos-sG-Xd3"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1R-Pq-To2">
-                        <rect key="frame" x="14" y="154" width="100" height="32"/>
+                        <rect key="frame" x="1" y="147" width="100" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Last Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jiV-Sn-HRA">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -718,7 +735,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-gD-teo">
-                        <rect key="frame" x="9" y="68" width="102" height="32"/>
+                        <rect key="frame" x="3" y="43" width="102" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cs2-TQ-xGf">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -726,7 +743,7 @@
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-Pz-wTM">
-                        <rect key="frame" x="9" y="42" width="104" height="32"/>
+                        <rect key="frame" x="3" y="19" width="104" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Last Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c1j-B4-uI8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -734,7 +751,7 @@
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-Bb-jvB">
-                        <rect key="frame" x="16" y="133" width="90" height="22"/>
+                        <rect key="frame" x="9" y="73" width="28" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" placeholderString="Page Num" drawsBackground="YES" id="dR6-rr-Ups">
                             <font key="font" metaFont="system"/>
@@ -742,8 +759,17 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C3-iG-cAm">
+                        <rect key="frame" x="9" y="341" width="92" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Annotation" drawsBackground="YES" id="sHK-L9-OUH">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfE-yM-lQy">
-                        <rect key="frame" x="15" y="101" width="90" height="32"/>
+                        <rect key="frame" x="37" y="66" width="64" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Jump" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="A08-GD-rBi">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -754,7 +780,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIt-cq-80v">
-                        <rect key="frame" x="62" y="410" width="50" height="25"/>
+                        <rect key="frame" x="62" y="403" width="50" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="page1" id="2s2-UQ-Vc6">
                             <font key="font" metaFont="system"/>
@@ -766,7 +792,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA5-gW-yxM">
-                        <rect key="frame" x="7" y="410" width="55" height="25"/>
+                        <rect key="frame" x="7" y="403" width="55" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lecture1" id="pUH-Nw-aqx">
                             <font key="font" metaFont="system"/>
@@ -774,13 +800,25 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jtl-iV-Biz">
+                        <rect key="frame" x="1" y="305" width="113" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Annotate Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vSq-rD-Kws">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="annotate:" target="26q-3P-Sgf" id="Z1W-Jy-TPA"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="837" y="-23.5"/>
+            <point key="canvasLocation" x="999.5" y="-127"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
                 <outlet property="NextLectureButton" destination="1XX-gD-teo" id="omr-Vh-DWU"/>
+                <outlet property="annotion" destination="1C3-iG-cAm" id="mQ0-mQ-eJR"/>
                 <outlet property="jumpButton" destination="wfE-yM-lQy" id="xq3-mb-Ppq"/>
                 <outlet property="lastLectureButton" destination="kTR-Pz-wTM" id="XFY-Hh-4Gv"/>
                 <outlet property="lastPageButton" destination="I1R-Pq-To2" id="A0Y-TK-3x1"/>
@@ -791,8 +829,9 @@
                 <outlet property="pageNumberEntry" destination="bcW-Bb-jvB" id="xJB-dT-flG"/>
                 <outlet property="pdfView" destination="90p-QT-D8J" id="jRD-Hb-fSq"/>
                 <outlet property="screen" destination="90p-QT-D8J" id="fxg-hL-A5E"/>
-                <outlet property="thumbnail" destination="hew-ta-wHt" id="rwt-r3-yWh"/>
                 <outlet property="window" destination="hDp-XD-8MV" id="QEQ-OG-wz8"/>
+                <outlet property="zoomInButton" destination="9X2-vw-Em6" id="l1g-1y-tyF"/>
+                <outlet property="zoomOutButton" destination="KbO-Eq-Ywm" id="gK3-mY-aKd"/>
             </connections>
         </customObject>
     </objects>

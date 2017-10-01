@@ -31,7 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
 
     @IBOutlet weak var screen: PDFView!
     
-    @IBOutlet weak var thumbnail: PDFThumbnailView!
 
     @IBOutlet weak var nextPageButton: NSButton!
 
@@ -80,6 +79,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     @IBOutlet var zoomInButton: NSButton!
     @IBAction func zoomIn(sender: AnyObject) {
         pdf.zoomIn(screen: screen)
+    }
+    
+    @IBOutlet var zoomOutButton: NSButton!
+    @IBAction func zoomOut(sender: AnyObject) {
+        pdf.zoomOut(screen: screen)
+    }
+    @IBOutlet weak var annotion: NSTextField!
+    
+    @IBAction func annotate(_ sender: Any) {
+        
     }
     
     @IBAction func changePageDisplay(_ sender: Any) {
