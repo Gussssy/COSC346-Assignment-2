@@ -11,7 +11,7 @@ import Quartz
 
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
 
 
 
@@ -43,20 +43,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var document: PDFDocument?
     
+    let pdf = PDFModel()
+    
     @IBAction func nextPage(_ sender: Any) {
-        if screen.canGoToNextPage(){
-            screen.goToNextPage(_ : Any)
-            pageNum += 1
-            changePageDisplay(_ : (Any).self)
-        }
+        pdf.next(screen: screen)
+        pageNum += 1
+        changePageDisplay(_ : (Any).self)
     }
     
     @IBAction func previousPage(_ sender: Any) {
-        if screen.canGoToPreviousPage(){
-            screen.goToPreviousPage(_ : Any)
-            pageNum += -1
-            changePageDisplay(_ : (Any).self)
-        }
+        pdf.previous(screen: screen)
+        pageNum += -1
+        changePageDisplay(_ : (Any).self)
 
     }
     
@@ -65,18 +63,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func jumpToPage(_ sender: Any) {
         document = screen.document
-        print(pageNumberEntry.stringValue)
         let num = Int(pageNumberEntry.stringValue)
         if  num! <= (document!.pageCount){
-            //screen.go(to: document!.page(at: num!)!)
-            screen.goToFirstPage(_ : Any)
+            pdf.jump(screen: screen, num: num!)
             pageNum = num!
-            var i = 0
-            while i < num!{
-                print(i)
-                screen.goToNextPage(_: (Any).self)
-                i+=1
-            }
             changePageDisplay(_ : (Any).self)
         }
     }
