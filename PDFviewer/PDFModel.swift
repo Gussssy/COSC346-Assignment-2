@@ -40,4 +40,10 @@ public class PDFModel{
             i+=1
         }
     }
+    
+    func zoomIn(screen: PDFView){
+        if screen.canZoomIn(){
+            screen.zoomIn(_: (Any).self)
+        }
+    }
 }

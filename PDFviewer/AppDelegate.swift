@@ -77,6 +77,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     @IBOutlet weak var pageLabel: NSTextField!
     var pageNum = 1
     
+    @IBOutlet var zoomInButton: NSButton!
+    @IBAction func zoomIn(sender: AnyObject) {
+        pdf.zoomIn(screen: screen)
+    }
     
     @IBAction func changePageDisplay(_ sender: Any) {
         pageLabel.stringValue = "page" + String(pageNum)
