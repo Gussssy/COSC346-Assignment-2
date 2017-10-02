@@ -19,6 +19,7 @@ public class PDFModel{
     
     var bookmarks: Array<PDFPage> = Array()
     var currentMark: Int = 0
+    var annotationsDict = Dictionary<PDFPage, String>()
     
     func next(screen: PDFView){
         if screen.canGoToNextPage(){
@@ -27,7 +28,7 @@ public class PDFModel{
             //changePageDisplay(_ : (Any).self)
             }
         }
-        
+    
     func previous(screen: PDFView){
         if screen.canGoToPreviousPage(){
             screen.goToPreviousPage(_ : (Any).self)
@@ -38,7 +39,6 @@ public class PDFModel{
         screen.goToFirstPage(_ : (Any).self)
         var i = 1
         while i < num{
-            print(i)
             screen.goToNextPage(_: (Any).self)
             i+=1
         }
@@ -58,9 +58,17 @@ public class PDFModel{
     
     func annotate(screen: PDFView, comment: String){
         let page = screen.currentPage
-        let annotation = PDFAnnotation()
-        annotation.page = page
-        page?.addAnnotation(annotation)
+        if let messages = annotationsDict[page!]{
+            annotationsDict[page!] = messages + " \(comment)"
+        }
+        else{
+            annotationsDict[page!] = comment
+        }
+    }
+    
+    func readAnnoations(screen: PDFView){
+        let page = screen.currentPage
+        print(annotationsDict[page!])
     }
     
     func bookmarkPage(page: PDFPage){

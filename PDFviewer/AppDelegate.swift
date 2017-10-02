@@ -17,10 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        //let url = NSURL.fileURL(withPath: "http://www.cs.otago.ac.nz/cosc346/Lectures/Lecture1.pdf")
-        //let pdf = PDFDocument(url: url)
+        let url = NSURL.fileURL(withPath: "/home/cshome/t/trgardner/COSC346-Assignment-2/Lecture1.pdf")
+        let pdf = PDFDocument(url: url)
         screen.allowsDragging = true
-        //screen.document = pdf
+        screen.document = pdf
+        pdfModel = PDFModel()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -42,16 +43,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     
     var document: PDFDocument?
     
-    let pdf = PDFModel()
+    var pdfModel: PDFModel?
     
     @IBAction func nextPage(_ sender: Any) {
-        pdf.next(screen: screen)
+        pdfModel!.next(screen: screen)
         pageNum += 1
         changePageDisplay(_ : (Any).self)
     }
     
     @IBAction func previousPage(_ sender: Any) {
-        pdf.previous(screen: screen)
+        pdfModel!.previous(screen: screen)
         pageNum += -1
         changePageDisplay(_ : (Any).self)
 
@@ -64,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
         document = screen.document
         let num = Int(pageNumberEntry.stringValue)
         if  num! <= (document!.pageCount){
-            pdf.jump(screen: screen, num: num!)
+            pdfModel!.jump(screen: screen, num: num!)
             pageNum = num!
             changePageDisplay(_ : (Any).self)
         }
@@ -79,12 +80,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     
     @IBOutlet var zoomInButton: NSButton!
     @IBAction func zoomIn(sender: AnyObject) {
-        pdf.zoomIn(screen: screen)
+        pdfModel!.zoomIn(screen: screen)
     }
     
     @IBOutlet var zoomOutButton: NSButton!
     @IBAction func zoomOut(sender: AnyObject) {
-        pdf.zoomOut(screen: screen)
+        pdfModel!.zoomOut(screen: screen)
     }
     @IBOutlet weak var annotion: NSTextField!
     
@@ -95,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     var bookmarkNum = 1
     @IBAction func bookmarkPage(_ sender: Any) {
         if let page = screen.currentPage{
-            pdf.bookmarkPage(page: page)
+            pdfModel!.bookmarkPage(page: page)
         }
         bookmarkPullDown.addItem(withTitle: "\(bookmarkNum)")
         bookmarkNum += 1
@@ -106,7 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     
     @IBAction func skipToMark(_ sender: Any) {
         let mark = bookmarkPullDown.selectedItem?.title
-        pdf.bookmarkSkip(screen: screen, mark: Int(mark!)!)
+        pdfModel!.bookmarkSkip(screen: screen, mark: Int(mark!)!)
     }
     
     
