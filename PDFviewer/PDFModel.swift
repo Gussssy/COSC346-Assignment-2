@@ -17,6 +17,9 @@ public protocol PDFModelDelegate{
 
 public class PDFModel{
     
+    var bookmarks: Array<PDFPage> = Array()
+    var currentMark: Int = 0
+    
     func next(screen: PDFView){
         if screen.canGoToNextPage(){
             screen.goToNextPage(_ : (Any).self)
@@ -58,5 +61,15 @@ public class PDFModel{
         let annotation = PDFAnnotation()
         annotation.page = page
         page?.addAnnotation(annotation)
+    }
+    
+    func bookmarkPage(page: PDFPage){
+        bookmarks.append(page)
+    }
+    
+    func bookmarkSkip(screen: PDFView, mark: Int){
+        if !bookmarks.isEmpty{
+            screen.go(to: bookmarks[mark-1])
+        }
     }
 }

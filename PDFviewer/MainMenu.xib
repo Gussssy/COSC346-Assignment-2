@@ -691,7 +691,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </pdfView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-dC-POe">
-                        <rect key="frame" x="1" y="170" width="102" height="32"/>
+                        <rect key="frame" x="2" y="281" width="112" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SJi-Ok-yey">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -701,8 +701,30 @@
                             <action selector="nextPage:" target="26q-3P-Sgf" id="lXU-mp-qoR"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQo-v0-SdP">
+                        <rect key="frame" x="0.0" y="209" width="114" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OgR-X0-3rq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="bookmarkPage:" target="26q-3P-Sgf" id="de7-yO-kG3"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8o-hC-8vZ">
+                        <rect key="frame" x="0.0" y="185" width="114" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Skip to Mark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="52n-8T-SWR">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="skipToMark:" target="26q-3P-Sgf" id="AWW-hV-n8b"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9X2-vw-Em6">
-                        <rect key="frame" x="3" y="123" width="49" height="32"/>
+                        <rect key="frame" x="3" y="234" width="49" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GX4-mI-AeY">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -713,7 +735,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbO-Eq-Ywm">
-                        <rect key="frame" x="52" y="123" width="47" height="32"/>
+                        <rect key="frame" x="46" y="234" width="47" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aMf-dQ-9fe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -724,7 +746,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1R-Pq-To2">
-                        <rect key="frame" x="1" y="147" width="100" height="32"/>
+                        <rect key="frame" x="3" y="258" width="111" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Last Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jiV-Sn-HRA">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -811,14 +833,28 @@
                             <action selector="annotate:" target="26q-3P-Sgf" id="Z1W-Jy-TPA"/>
                         </connections>
                     </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVA-Bl-sGD">
+                        <rect key="frame" x="4" y="161" width="105" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Bookmarks" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="EGe-Jl-FpG" id="2Q8-T0-QR1">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="WKA-R9-iUG">
+                                <items>
+                                    <menuItem title="Bookmarks" state="on" id="EGe-Jl-FpG"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="999.5" y="-127"/>
+            <point key="canvasLocation" x="1220.5" y="-152"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
                 <outlet property="NextLectureButton" destination="1XX-gD-teo" id="omr-Vh-DWU"/>
                 <outlet property="annotion" destination="1C3-iG-cAm" id="mQ0-mQ-eJR"/>
+                <outlet property="bookmarkPullDown" destination="AVA-Bl-sGD" id="2CG-KS-MTU"/>
                 <outlet property="jumpButton" destination="wfE-yM-lQy" id="xq3-mb-Ppq"/>
                 <outlet property="lastLectureButton" destination="kTR-Pz-wTM" id="XFY-Hh-4Gv"/>
                 <outlet property="lastPageButton" destination="I1R-Pq-To2" id="A0Y-TK-3x1"/>

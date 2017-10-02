@@ -71,6 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     }
     
     
+    
     @IBOutlet weak var lectureLabel: NSTextField!
     
     @IBOutlet weak var pageLabel: NSTextField!
@@ -91,8 +92,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
         
     }
     
+    var bookmarkNum = 1
+    @IBAction func bookmarkPage(_ sender: Any) {
+        if let page = screen.currentPage{
+            pdf.bookmarkPage(page: page)
+        }
+        bookmarkPullDown.addItem(withTitle: "\(bookmarkNum)")
+        bookmarkNum += 1
+    }
+    
+    
+    @IBOutlet weak var bookmarkPullDown: NSPopUpButton!
+    
+    @IBAction func skipToMark(_ sender: Any) {
+        let mark = bookmarkPullDown.selectedItem?.title
+        pdf.bookmarkSkip(screen: screen, mark: Int(mark!)!)
+    }
+    
+    
     @IBAction func changePageDisplay(_ sender: Any) {
         pageLabel.stringValue = "page" + String(pageNum)
     }
+    
+    
 }
 
