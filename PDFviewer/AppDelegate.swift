@@ -11,20 +11,25 @@ import Quartz
 
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
 
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        print(Bundle.main.bundlePath)
-        let url2 = NSURL.fileURL(withPath: Bundle.main.path(forResource: "Lecture1", ofType: "pdf")!)
-        //let url2 = NSURL.rel
-        let url = NSURL.fileURL(withPath: "/home/cshome/t/trgardner/COSC346-Assignment-2/Lecture1.pdf")
-        let pdf = PDFDocument(url: url2)
+        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: "Lecture1", ofType: "pdf")!)
+        //let url = NSURL.fileURL(withPath: "/home/cshome/t/trgardner/COSC346-Assignment-2/Lecture1.pdf")
+        let pdf = PDFDocument(url: url)
         screen.allowsDragging = true
         screen.document = pdf
         pdfModel = PDFModel()
+        document = pdf
+        pdfModel!.lectureArray = ["Lecture1","Lecture2", "Lecture3"]
+        previousLectureButton.isEnabled = false
+        
+        //Timer Stuff
+        lectureTimer = LectureTimerModel()
+        lectureTimer!.delegate = self
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -42,11 +47,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
 
     @IBOutlet weak var nextLectureButton: NSButton!
     
-    @IBOutlet weak var lastLectureButton: NSButton!
+    @IBOutlet weak var previousLectureButton: NSButton!
+
+    //instance variable
     
     var document: PDFDocument?
     
     var pdfModel: PDFModel?
+    
+    var lectureTimer : LectureTimerModel?
     
     @IBAction func nextPage(_ sender: Any) {
         pdfModel!.next(screen: screen)
@@ -74,7 +83,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
         }
     }
     
+    var lectureNum = 1
     
+    @IBAction func nextLecture(_ sender: Any) {
+        lectureNum += 1
+        lectureLabel.stringValue = "lecture \(lectureNum)"
+        pageNum = 1
+        changePageDisplay(_: (Any).self)
+        previousLectureButton.isEnabled = true
+        let disable = pdfModel!.nextLecture(screen: screen)
+        bookmarkPullDown.removeAllItems()
+        if disable {
+            nextLectureButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func previousLecture(_ sender: Any) {
+        lectureNum += -1
+        lectureLabel.stringValue = "lecture \(lectureNum)"
+        pageNum = 1
+        changePageDisplay(_: (Any).self)
+        nextLectureButton.isEnabled = true
+        let disable = pdfModel!.previousLecture(screen: screen)
+        bookmarkPullDown.removeAllItems()
+        if disable{
+            previousLectureButton.isEnabled = false
+        }
+    }
     
     @IBOutlet weak var lectureLabel: NSTextField!
     
@@ -90,6 +125,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     @IBAction func zoomOut(sender: AnyObject) {
         pdfModel!.zoomOut(screen: screen)
     }
+    
+
+    
+    
     @IBOutlet weak var annotation: NSTextField!
     
     @IBAction func annotate(_ sender: Any) {
@@ -97,9 +136,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
             if let page = screen.currentPage{
                 let words = String(annotation.stringValue)
                 pdfModel!.annotate(page: page, comment: words!)
+                annotation.stringValue = ""
             }
         }
         
+    }
+    
+    @IBAction func readAnnotation(_ sender: Any) {
+        let note = pdfModel!.readAnnoations(screen: screen)
+        annotation.stringValue = note
+    }
+    
+    @IBAction func annotateLecture(_ sender: Any) {
+        let comment = annotation.stringValue
+        pdfModel!.annotateLecture(screen: screen, comment: comment)
+        annotation.stringValue = ""
+    }
+    
+    
+    @IBAction func readLectureNotes(_ sender: Any) {
+        let notes = pdfModel!.readLectureNotes(screen: screen)
+        annotation.stringValue = notes
     }
     
     var bookmarkNum = 1
@@ -116,6 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     
     @IBAction func skipToMark(_ sender: Any) {
         let mark = bookmarkPullDown.selectedItem?.title
+        if mark == "Bookmarks"{return}
         pdfModel!.bookmarkSkip(screen: screen, mark: Int(mark!)!)
     }
     
@@ -124,6 +182,56 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
         pageLabel.stringValue = "page" + String(pageNum)
     }
     
+    /////////////////////////////////////////////////////////
+    //                  TIMER STUFF                        //
+    /////////////////////////////////////////////////////////
+    
+    
+    
+    
+    // Timer IB stff
+    @IBOutlet weak var timeElaspsed: NSTextField!
+    @IBOutlet weak var startTimer: NSButton!
+    @IBOutlet weak var resetTimer: NSButton!
+    
+    
+    
+    @IBAction func startTimer(_ sender: Any) {
+        
+        if (startTimer.title == "Start"){
+            lectureTimer!.start()
+            startTimer.title = "Pause"
+        }else{
+            lectureTimer!.stop()
+            startTimer.title = "Start"
+        }
+        
+    }
+    
+    @IBAction func resetTimer(_ sender: Any) {
+        //lectureTimer!.stop()
+        lectureTimer!.reset()
+    }
+    
+    
+    
+    // Update the label to show the current time, formatted for display
+    // callback target from TimerModel
+    func secondsChanged(_ seconds: Int) {
+        // Take the total number of seconds the timer has run for
+        var s = seconds
+        // Determine how many hours and minutes this represents
+        let h = s/3600
+        s %= 3600
+        let m = s/60
+        s %= 60
+        
+        // Update the label with the formatted timer value
+        // (Rather ObjCly!)
+        timeElaspsed.stringValue = String(format:"%02ld:%02ld:%02ld", h,m,s)
+        //checkTime()
+    }
+
     
 }
 

@@ -20,6 +20,9 @@ public class PDFModel{
     var bookmarks: Array<PDFPage> = Array()
     var currentMark: Int = 0
     var annotationsDict = Dictionary<PDFPage, String>()
+    var lectureArray = Array<String>()
+    var currentLecture: Int = 0
+    var lectureNotes = Dictionary<PDFDocument, String>()
     
     func next(screen: PDFView){
         if screen.canGoToNextPage(){
@@ -44,6 +47,38 @@ public class PDFModel{
         }
     }
     
+    // return True if the nextLecture button should be disabled
+    func nextLecture(screen: PDFView) -> Bool{
+        if currentLecture >= lectureArray.count - 1{
+            return true
+        }
+        currentLecture += 1
+        let lecture = lectureArray[currentLecture]
+        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
+        let pdf = PDFDocument(url: url)
+        screen.document = pdf
+        if currentLecture == lectureArray.count - 1{
+            return true
+        }
+        return false
+    }
+    
+    // return True if the previousLecture button should be disabled
+    func previousLecture(screen: PDFView) -> Bool{
+        if currentLecture <= 0{
+            return true
+        }
+        currentLecture += -1
+        let lecture = lectureArray[currentLecture]
+        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
+        let pdf = PDFDocument(url: url)
+        screen.document = pdf
+        if currentLecture == 0{
+            return true
+        }
+        return false
+    }
+    
     func zoomIn(screen: PDFView){
         if screen.canZoomIn(){
             screen.zoomIn(_: (Any).self)
@@ -62,13 +97,36 @@ public class PDFModel{
         }
         else{
             annotationsDict[page] = comment
-            print(annotationsDict[page])
         }
     }
     
-    func readAnnoations(screen: PDFView){
+    func readAnnoations(screen: PDFView) -> String{
         let page = screen.currentPage
-        print(annotationsDict[page!])
+        if let annotation = annotationsDict[page!]{
+            return annotation
+        }
+        return ""
+    }
+    
+    func annotateLecture(screen: PDFView, comment: String){
+        let doc = screen.document
+        if let message = lectureNotes[doc!]{
+            lectureNotes[doc!] = message + " \(comment)"
+        }
+        else{
+            lectureNotes[doc!] = comment
+        }
+    }
+    
+    func readLectureNotes(screen: PDFView) -> String{
+        print("here")
+        let doc = screen.document
+        print("1 + \(lectureNotes[doc!])")
+        if let notes = lectureNotes[doc!]{
+            print(notes)
+            return notes
+        }
+        return ""
     }
     
     func bookmarkPage(page: PDFPage){
