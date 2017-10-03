@@ -182,6 +182,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
         pageLabel.stringValue = "page" + String(pageNum)
     }
     
+    
+    @IBAction func search(_ sender: Any) {
+        let resultsNum = pdfModel!.find(screen: screen, term: annotation.stringValue)
+        annotation.stringValue = "\(resultsNum) result(s)"
+    }
+    
+    @IBOutlet weak var nextResultButton: NSButton!
+    @IBAction func nextSearchResult(_ sender: Any) {
+        pdfModel!.nextSearchResult(screen: screen)
+    }
     /////////////////////////////////////////////////////////
     //                  TIMER STUFF                        //
     /////////////////////////////////////////////////////////

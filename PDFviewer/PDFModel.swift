@@ -22,7 +22,9 @@ public class PDFModel{
     var annotationsDict = Dictionary<PDFPage, String>()
     var lectureArray = Array<String>()
     var currentLecture: Int = 0
-    var lectureNotes = Dictionary<PDFDocument, String>()
+    var lectureNotes = Dictionary<String, String>()
+    var searchResults = Array<PDFSelection>()
+    var currentResult: Int = 0
     
     func next(screen: PDFView){
         if screen.canGoToNextPage(){
@@ -109,20 +111,18 @@ public class PDFModel{
     }
     
     func annotateLecture(screen: PDFView, comment: String){
-        let doc = screen.document
-        if let message = lectureNotes[doc!]{
-            lectureNotes[doc!] = message + " \(comment)"
+        let doc = lectureArray[currentLecture]
+        if let message = lectureNotes[doc]{
+            lectureNotes[doc] = message + " \(comment)"
         }
         else{
-            lectureNotes[doc!] = comment
+            lectureNotes[doc] = comment
         }
     }
     
     func readLectureNotes(screen: PDFView) -> String{
-        print("here")
-        let doc = screen.document
-        print("1 + \(lectureNotes[doc!])")
-        if let notes = lectureNotes[doc!]{
+        let doc = lectureArray[currentLecture]
+        if let notes = lectureNotes[doc]{
             print(notes)
             return notes
         }
@@ -136,6 +136,24 @@ public class PDFModel{
     func bookmarkSkip(screen: PDFView, mark: Int){
         if !bookmarks.isEmpty{
             screen.go(to: bookmarks[mark-1])
+        }
+    }
+    
+    func find(screen: PDFView, term: String) -> Int{
+        let doc = screen.document
+        let selections = doc?.findString(term, withOptions: 0)
+        searchResults = selections!
+        if selections != nil && selections!.count > 0{
+            screen.go(to: selections![0])
+            return selections!.count
+        }
+        return 0
+    }
+    
+    func nextSearchResult(screen: PDFView){
+        currentResult += 1
+        if currentResult <= searchResults.count-1{
+            screen.go(to: searchResults[currentResult])
         }
     }
 }

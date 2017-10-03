@@ -835,6 +835,17 @@
                             <action selector="annotateLecture:" target="26q-3P-Sgf" id="h2K-dY-L6M"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="42d-JP-6te">
+                        <rect key="frame" x="375" y="35" width="83" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aHu-iK-MdM">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="search:" target="26q-3P-Sgf" id="nOa-E4-2jL"/>
+                        </connections>
+                    </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVA-Bl-sGD">
                         <rect key="frame" x="4" y="250" width="105" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -916,9 +927,20 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kD-3x-uM3">
+                        <rect key="frame" x="382" y="2" width="69" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bNn-27-MRh">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="nextSearchResult:" target="26q-3P-Sgf" id="fWD-LJ-ngN"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="1323.5" y="-237.5"/>
+            <point key="canvasLocation" x="1128" y="-254"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
@@ -932,6 +954,7 @@
                 <outlet property="lectureLabel" destination="bA5-gW-yxM" id="hBb-A6-XZn"/>
                 <outlet property="nextLectureButton" destination="1XX-gD-teo" id="YRJ-5B-Hgd"/>
                 <outlet property="nextPageButton" destination="aQy-dC-POe" id="QYg-d5-Qah"/>
+                <outlet property="nextResultButton" destination="9kD-3x-uM3" id="rSX-Px-aCR"/>
                 <outlet property="pageLabel" destination="GIt-cq-80v" id="N1o-Ha-A3N"/>
                 <outlet property="pageNumberEntry" destination="bcW-Bb-jvB" id="xJB-dT-flG"/>
                 <outlet property="pdfView" destination="90p-QT-D8J" id="jRD-Hb-fSq"/>
