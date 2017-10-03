@@ -56,13 +56,13 @@ public class PDFModel{
         }
     }
     
-    func annotate(screen: PDFView, comment: String){
-        let page = screen.currentPage
-        if let messages = annotationsDict[page!]{
-            annotationsDict[page!] = messages + " \(comment)"
+    func annotate(page: PDFPage, comment: String){
+        if let messages = annotationsDict[page]{
+            annotationsDict[page] = messages + " \(comment)"
         }
         else{
-            annotationsDict[page!] = comment
+            annotationsDict[page] = comment
+            print(annotationsDict[page])
         }
     }
     

@@ -12,7 +12,7 @@
 		4C3BD08F1F7CD4A00067DFBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD08E1F7CD4A00067DFBE /* Assets.xcassets */; };
 		4C3BD0A81F7CD4A00067DFBE /* PDFviewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD0A71F7CD4A00067DFBE /* PDFviewerUITests.swift */; };
 		4C3BD0B61F7CD5140067DFBE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */; };
-		4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */; };
+		4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */; settings = {ASSET_TAGS = (New, ); }; };
 		4CBD0C1E1F80C46D00C84ED6 /* PDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD0C1D1F80C46D00C84ED6 /* PDFModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +186,9 @@
 		4C3BD07F1F7CD49F0067DFBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Tristan Gardner";

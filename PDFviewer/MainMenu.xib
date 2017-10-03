@@ -859,7 +859,7 @@
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="1272.5" y="-205"/>
+            <point key="canvasLocation" x="1307" y="-282"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
@@ -881,5 +881,16 @@
                 <outlet property="zoomOutButton" destination="KbO-Eq-Ywm" id="gK3-mY-aKd"/>
             </connections>
         </customObject>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="oYU-6T-JHM">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="283" y="305" width="203" height="116"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="6KP-zF-IAW">
+                <rect key="frame" x="0.0" y="0.0" width="203" height="116"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <point key="canvasLocation" x="814" y="-451"/>
+        </window>
     </objects>
 </document>

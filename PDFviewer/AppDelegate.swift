@@ -17,8 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        print(Bundle.main.bundlePath)
+        let url2 = NSURL.fileURL(withPath: Bundle.main.path(forResource: "Lecture1", ofType: "pdf")!)
+        //let url2 = NSURL.rel
         let url = NSURL.fileURL(withPath: "/home/cshome/t/trgardner/COSC346-Assignment-2/Lecture1.pdf")
-        let pdf = PDFDocument(url: url)
+        let pdf = PDFDocument(url: url2)
         screen.allowsDragging = true
         screen.document = pdf
         pdfModel = PDFModel()
@@ -87,9 +90,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, PDFModelDelegate {
     @IBAction func zoomOut(sender: AnyObject) {
         pdfModel!.zoomOut(screen: screen)
     }
-    @IBOutlet weak var annotion: NSTextField!
+    @IBOutlet weak var annotation: NSTextField!
     
     @IBAction func annotate(_ sender: Any) {
+        if pdfModel != nil{
+            if let page = screen.currentPage{
+                let words = String(annotation.stringValue)
+                pdfModel!.annotate(page: page, comment: words!)
+            }
+        }
         
     }
     
