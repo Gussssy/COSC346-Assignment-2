@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
         document = pdf
         pdfModel!.lectureArray = ["Lecture1","Lecture2", "Lecture3"]
         previousLectureButton.isEnabled = false
+        populateLecturePullDown(list: pdfModel!.lectureArray)
         
         //Timer Stuff
         lectureTimer = LectureTimerModel()
@@ -56,6 +57,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
     var pdfModel: PDFModel?
     
     var lectureTimer : LectureTimerModel?
+    
+    func populateLecturePullDown(list: Array<String>){
+        var i = 0
+        while i < list.count{
+            lectureMenuPullDown.addItem(withTitle: list[i])
+            i += 1
+        }
+    }
     
     @IBAction func nextPage(_ sender: Any) {
         pdfModel!.next(screen: screen)
@@ -108,6 +117,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
         bookmarkPullDown.removeAllItems()
         if disable{
             previousLectureButton.isEnabled = false
+        }
+    }
+    
+    @IBOutlet weak var lectureMenuPullDown: NSPopUpButton!
+    
+    @IBAction func skipToLecture(_ sender: Any) {
+        let lecture = lectureMenuPullDown.selectedItem?.title
+        pdfModel!.skipToLecture(screen: screen, lecture: lecture!)
+        if lecture == lectureMenuPullDown.lastItem?.title{
+            previousLectureButton.isEnabled = true
+            nextLectureButton.isEnabled = false
+        }
+        if lecture == lectureMenuPullDown.item(at: 1)?.title{
+            previousLectureButton.isEnabled = false
+            nextLectureButton.isEnabled = true
         }
     }
     

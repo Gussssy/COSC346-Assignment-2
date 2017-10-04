@@ -81,6 +81,14 @@ public class PDFModel{
         return false
     }
     
+    func skipToLecture(screen: PDFView, lecture: String){
+        if lecture == "Lectures"{ return}
+        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
+        let pdf = PDFDocument(url: url)
+        screen.document = pdf
+        currentLecture = lectureArray.index(of: lecture)!
+    }
+    
     func zoomIn(screen: PDFView){
         if screen.canZoomIn(){
             screen.zoomIn(_: (Any).self)

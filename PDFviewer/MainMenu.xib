@@ -646,10 +646,14 @@
                                     <action selector="performMiniaturize:" target="-1" id="VwT-WD-YPe"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Zoom" id="R4o-n2-Eq4">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Zoom in" keyEquivalent="+" id="R4o-n2-Eq4">
                                 <connections>
-                                    <action selector="performZoom:" target="-1" id="DIl-cC-cCs"/>
+                                    <action selector="zoomInSender:" target="26q-3P-Sgf" id="h0H-Wp-XML"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom out" keyEquivalent="-" id="d0q-z2-Vjj">
+                                <connections>
+                                    <action selector="zoomOutWithSender:" target="26q-3P-Sgf" id="4uH-OZ-PwW"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
@@ -657,6 +661,121 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="DRN-fu-gQh"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Lecture" id="okz-Jm-2k9">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Lecture" systemMenu="window" id="StU-Ik-dK9">
+                        <items>
+                            <menuItem title="Next Page" id="lpw-Ht-SoK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="nextPage:" target="26q-3P-Sgf" id="Wba-Fa-rBu"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Previous Page" id="GZ1-4x-59b">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="previousPage:" target="26q-3P-Sgf" id="DU7-s2-Q3W"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump to Page..." id="CJM-M1-HDl">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="jumpToPage:" target="26q-3P-Sgf" id="mh3-gf-CH5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="foR-9u-UVC"/>
+                            <menuItem title="Next Lecture" id="yza-sP-0h7">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="nextLecture:" target="26q-3P-Sgf" id="YWR-Oc-ACM"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Previous Lecture" id="uDN-i0-1MZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="previousLecture:" target="26q-3P-Sgf" id="MjR-84-dgE"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump to Lecture..." id="tW1-Be-3s5">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="skipToLecture:" target="26q-3P-Sgf" id="e4V-QF-9tr"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Annotations" id="uos-LB-Ks8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Annotations" systemMenu="window" id="2PA-YU-8Wa">
+                        <items>
+                            <menuItem title="Annotate Page" id="TKb-eJ-AMQ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="annotate:" target="26q-3P-Sgf" id="nkH-Gu-yLd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Read Page notes" id="kRb-Dd-d8y">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="readAnnotation:" target="26q-3P-Sgf" id="nZg-7U-R6x"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="19M-pn-5UH"/>
+                            <menuItem title="Annotate Lecture" id="hb1-GO-IUd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="annotateLecture:" target="26q-3P-Sgf" id="aRR-BZ-cNH"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Read Lecture Notes" id="6Mp-TF-rsL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="readLectureNotes:" target="26q-3P-Sgf" id="CDx-td-3mm"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Bookmarks" id="HPA-7P-byI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Bookmarks" systemMenu="window" id="Mkf-yR-tJD">
+                        <items>
+                            <menuItem title="Bookmark Page" id="GQ6-OH-DH7">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="bookmarkPage:" target="26q-3P-Sgf" id="QdS-Xd-hvL"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Skip to Mark" id="7ZN-kH-est">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="skipToMark:" target="26q-3P-Sgf" id="BKK-ne-Ge4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="11B-GY-5dJ"/>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Find" id="rdH-kG-Bbr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Find" systemMenu="window" id="qAy-PE-Zqw">
+                        <items>
+                            <menuItem title="Search" id="U5w-5R-bGb">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="search:" target="26q-3P-Sgf" id="19G-dA-zbb"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Next" id="SFs-Nf-3Yu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="nextSearchResult:" target="26q-3P-Sgf" id="IEr-Em-epB"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -675,7 +794,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="146" y="345"/>
+            <point key="canvasLocation" x="-396" y="-12"/>
         </menu>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="hDp-XD-8MV">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -687,7 +806,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-dC-POe">
-                        <rect key="frame" x="2" y="370" width="112" height="32"/>
+                        <rect key="frame" x="2" y="456" width="112" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SJi-Ok-yey">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -698,7 +817,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQo-v0-SdP">
-                        <rect key="frame" x="0.0" y="298" width="114" height="32"/>
+                        <rect key="frame" x="4" y="346" width="111" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OgR-X0-3rq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -709,7 +828,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8o-hC-8vZ">
-                        <rect key="frame" x="0.0" y="274" width="114" height="32"/>
+                        <rect key="frame" x="3" y="298" width="113" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Skip to Mark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="52n-8T-SWR">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -719,8 +838,19 @@
                             <action selector="skipToMark:" target="26q-3P-Sgf" id="AWW-hV-n8b"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEN-WV-YdO">
+                        <rect key="frame" x="2" y="140" width="114" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Skip to Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d6o-fj-935">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="skipToLecture:" target="26q-3P-Sgf" id="ekx-LI-nBP"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9X2-vw-Em6">
-                        <rect key="frame" x="3" y="323" width="40" height="32"/>
+                        <rect key="frame" x="2" y="254" width="56" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GX4-mI-AeY">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -731,7 +861,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1R-Pq-To2">
-                        <rect key="frame" x="3" y="347" width="111" height="32"/>
+                        <rect key="frame" x="3" y="432" width="111" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Last Page" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jiV-Sn-HRA">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -742,7 +872,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-gD-teo">
-                        <rect key="frame" x="3" y="132" width="102" height="32"/>
+                        <rect key="frame" x="3" y="215" width="110" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cs2-TQ-xGf">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -753,7 +883,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-Pz-wTM">
-                        <rect key="frame" x="3" y="108" width="104" height="32"/>
+                        <rect key="frame" x="4" y="190" width="109" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Last Lecture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c1j-B4-uI8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -764,7 +894,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-Bb-jvB">
-                        <rect key="frame" x="9" y="162" width="28" height="22"/>
+                        <rect key="frame" x="9" y="412" width="28" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" placeholderString="Page Num" drawsBackground="YES" id="dR6-rr-Ups">
                             <font key="font" metaFont="system"/>
@@ -782,7 +912,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfE-yM-lQy">
-                        <rect key="frame" x="37" y="155" width="64" height="32"/>
+                        <rect key="frame" x="39" y="406" width="74" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Jump" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="A08-GD-rBi">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -847,7 +977,7 @@
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVA-Bl-sGD">
-                        <rect key="frame" x="4" y="250" width="105" height="26"/>
+                        <rect key="frame" x="8" y="326" width="104" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Bookmarks" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="EGe-Jl-FpG" id="2Q8-T0-QR1">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -871,7 +1001,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbO-Eq-Ywm">
-                        <rect key="frame" x="37" y="323" width="37" height="32"/>
+                        <rect key="frame" x="58" y="254" width="58" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aMf-dQ-9fe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -938,9 +1068,22 @@
                             <action selector="nextSearchResult:" target="26q-3P-Sgf" id="fWD-LJ-ngN"/>
                         </connections>
                     </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jef-cV-Wyj">
+                        <rect key="frame" x="7" y="169" width="105" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Lectures" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="K3c-qf-wiG" id="vDa-LB-7Ty">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="gQQ-qF-9Wy">
+                                <items>
+                                    <menuItem title="Lectures" state="on" id="K3c-qf-wiG"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="1128" y="-254"/>
+            <point key="canvasLocation" x="1029" y="-273"/>
         </window>
         <customObject id="26q-3P-Sgf" customClass="AppDelegate" customModule="PDFviewer" customModuleProvider="target">
             <connections>
@@ -952,6 +1095,7 @@
                 <outlet property="lastLectureButton" destination="kTR-Pz-wTM" id="XFY-Hh-4Gv"/>
                 <outlet property="lastPageButton" destination="I1R-Pq-To2" id="A0Y-TK-3x1"/>
                 <outlet property="lectureLabel" destination="bA5-gW-yxM" id="hBb-A6-XZn"/>
+                <outlet property="lectureMenuPullDown" destination="jef-cV-Wyj" id="dNi-T6-O8y"/>
                 <outlet property="nextLectureButton" destination="1XX-gD-teo" id="YRJ-5B-Hgd"/>
                 <outlet property="nextPageButton" destination="aQy-dC-POe" id="QYg-d5-Qah"/>
                 <outlet property="nextResultButton" destination="9kD-3x-uM3" id="rSX-Px-aCR"/>
@@ -968,5 +1112,10 @@
                 <outlet property="zoomOutButton" destination="KbO-Eq-Ywm" id="gK3-mY-aKd"/>
             </connections>
         </customObject>
+        <menuItem title="Minimize" keyEquivalent="m" id="zjy-5d-5pP">
+            <connections>
+                <action selector="performMiniaturize:" target="-1" id="eBi-xm-1Hy"/>
+            </connections>
+        </menuItem>
     </objects>
 </document>
