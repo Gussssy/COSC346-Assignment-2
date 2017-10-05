@@ -93,6 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
             }
             
         }
+        if screen.document == nil {return}
         document = screen.document
         populateSlideTimes(doc: document!)
     }
@@ -134,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //removes all the bookmarks of the last lecture
     //tries to disable next ecture menu item if on last lecture
     @IBAction func nextLecture(_ sender: Any) {
-        if lectureNum < pdfArray.count{
+        if lectureNum < pdfArray.count - 1{
             lectureNum += 1
             lectureLabel.stringValue = "Lecture  \(lectureNum + 1)"
             pageNum = 1
@@ -143,6 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
             screen.document = pdfArray[lectureNum]
             document = screen.document
             bookmarkPullDown.removeAllItems()
+            bookmarkNum = 1
             populateSlideTimes(doc: screen.document!)
         }
     }
@@ -153,13 +155,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     @IBAction func previousLecture(_ sender: Any) {
         if lectureNum > 0{
             lectureNum += -1
-            lectureLabel.stringValue = "Lecture \(lectureNum)"
+            lectureLabel.stringValue = "Lecture \(lectureNum + 1)"
             pageNum = 1
             changePageDisplay(_: (Any).self)
         
             screen.document = pdfArray[lectureNum]
             document = screen.document
             bookmarkPullDown.removeAllItems()
+            bookmarkNum = 1
             populateSlideTimes(doc: screen.document!)
         }
     }
