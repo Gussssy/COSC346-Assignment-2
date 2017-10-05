@@ -25,9 +25,9 @@ public class LectureTimerModel : NSObject {
     public var delegate:LectureTimerDelegate? = nil
     
    //Instance varible for time updates
-    var minutes = 0
-    var hours = 0
-    var seconds = 0
+    var  minutes : Int = 0
+    var hours : Int = 0
+    var seconds : Int = 0
     
     
     
@@ -74,8 +74,9 @@ public class LectureTimerModel : NSObject {
         }
        
         //Change the text in the time display
-         print("\(hours):\(minutes):\(seconds)")
-        delegate?.updateTimeDisplay("\(hours):\(minutes):\(seconds)")
+         //print("\(hours):\(minutes):\(seconds)")
+        let time : String =  String(format:"%02ld:%02ld:%02ld", hours,minutes,seconds)
+        delegate?.updateTimeDisplay(time)
         
     }
     
