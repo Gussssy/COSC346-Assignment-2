@@ -1,0 +1,19 @@
+
+
+Fix the time formatting (10 mins)
+
+
+Implement Atuo lecture Mode (2 hours?)
+
+We need to redesign UI but not till everything working !
+- fix autosizing, I know how to do it but no point if we are just going to chnage the position of things
+
+
+Are bookmarks working? bookmarks working, also we probs need to store more info of the book mark
+
+
+
+SCROLLING AND LECTURE/PAGE NUMBERS
+For the scrolling, we could check every second and update it, Im not sure how to do that any faster then a second,
+- disable checking while scrolling, I think this can be done by adding a condition before checking
+- will look into it from lecture 19 but it is no biggy

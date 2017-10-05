@@ -9,30 +9,98 @@
 import Foundation
 
 // classes implement this protocol to receive callbacks from the TimerModel
-public protocol TimerModelDelegate {
+public protocol LectureTimerDelegate {
     func secondsChanged(_ second:Int)
+    func updateTimeDisplay(_ time: String)
 }
 
 
 
 public class LectureTimerModel : NSObject {
     
-    var seconds:Int = 0
+    //Instance varibales for the LectureTimer presentation
+    var secondsElapsed:Int = 0
     var stopping:Bool = false
-    
     public fileprivate(set) var running:Bool = false
-    public var delegate:TimerModelDelegate? = nil
+    public var delegate:LectureTimerDelegate? = nil
     
-    func alertDelegate() {
-        // if a delegate isn't defined, do nothing
-        delegate?.secondsChanged(seconds)
+   //Instance varible for time updates
+    var minutes = 0
+    var hours = 0
+    var seconds = 0
+    
+    
+    
+    // Function to initialize the time display,
+    //returns the current time which will be placed into the time display
+    public func initializeTimeDisplay() -> String{
+        
+        
+        let date = Date()
+        let calender = Calendar.current
+        
+        //Accurately determine the current time from the OS
+         minutes = calender.component(.minute, from: date)
+         hours = calender.component(.hour, from : date)
+         seconds = calender.component(.second, from : date)
+        
+        
+        
+    
+        //Make a timer
+        let timer = Foundation.Timer(timeInterval: 1, target: self, selector: #selector(LectureTimerModel.updateTime(_:)), userInfo: nil, repeats: true)
+        let loop = RunLoop.current
+        
+        
+        //Attach timer to the event loop so it will start running
+        loop.add(timer, forMode : RunLoopMode.commonModes)
+    
+        return "\(hours):\(minutes):\(seconds)"
+        
     }
+    
+    // Function that updates the time every 60 seconds FIX THIS
+    public func updateTime(_ theTimer:Foundation.Timer){
+    
+        print("updateTime inside timermodel has been called, seconds: \(seconds)")
+       seconds += 1
+        if (seconds == 60){
+            seconds = 0
+            minutes += 1
+            if (minutes == 60){
+               hours  += 1
+                minutes = 0
+            }
+        }
+       
+        //Change the text in the time display
+         print("\(hours):\(minutes):\(seconds)")
+        delegate?.updateTimeDisplay("\(hours):\(minutes):\(seconds)")
+        
+    }
+    
+    func alertDelegateTimeDisplay(){
+        
+        
+        
+       //time = String(format:"%02ld:%02ld:%02ld", hours,minutes,seconds)
+        delegate?.updateTimeDisplay("\(hours):\(minutes):\(seconds)")
+    }
+    
+    
+    func alertDelegateTimer() {
+        // if a delegate isn't defined, do nothing
+        delegate?.secondsChanged(secondsElapsed)
+    }
+    
+    
+    
     
     // the OS's NSTimer will callback here
     func countUp(_ theTimer:Foundation.Timer) {
         if(!stopping) {
-            seconds += 1
-            alertDelegate()
+            secondsElapsed += 1
+            alertDelegateTimer()
         } else {
             theTimer.invalidate()
             running = false
@@ -70,8 +138,8 @@ public class LectureTimerModel : NSObject {
     
     
     public func reset() {
-        seconds = 0
-        alertDelegate()
+        secondsElapsed = 0
+        alertDelegateTimer()
     }
     
     

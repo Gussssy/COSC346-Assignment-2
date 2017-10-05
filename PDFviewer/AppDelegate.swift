@@ -10,8 +10,12 @@ import Cocoa
 import Quartz
 
 
+//Remove this ??
+import Foundation
+
+
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
 
 
 
@@ -31,6 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
         //Timer Stuff
         lectureTimer = LectureTimerModel()
         lectureTimer!.delegate = self
+        
+        
+        //Set up time display
+        setTimeDisplay()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -266,6 +274,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, TimerModelDelegate {
         //checkTime()
     }
 
+    
+    /////////////////////////////////////////////////////////
+    //                 TIME AND DATE DISPLAY               //
+    /////////////////////////////////////////////////////////
+
+    
+    @IBOutlet weak var timeDisplay: NSTextFieldCell!
+ 
+    private func setTimeDisplay(){
+    
+        timeDisplay.stringValue = lectureTimer!.initializeTimeDisplay()
+        timeDisplay.isEditable = true
+        
+    }
+    
+    
+    //call back function
+    public func updateTimeDisplay(_ time : String){
+    
+        print("This function has been called and the time is \(time)")
+        timeDisplay.stringValue = time
+        
+    
+    }
+    
     
 }
 
