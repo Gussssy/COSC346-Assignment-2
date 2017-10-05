@@ -385,7 +385,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     @IBAction func updatePageDisplay(_ sender: Any) {
         
-        print(document.page)
+        print(document!.page)
         
         if let correctPageNum = document?.index(for: screen.currentPage!){
             print(document!, screen.currentPage!, correctPageNum, pageNum)
