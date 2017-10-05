@@ -21,18 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: "Lecture1", ofType: "pdf")!)
-        //let url = NSURL.fileURL(withPath: "/home/cshome/t/trgardner/COSC346-Assignment-2/Lecture1.pdf")
-        let pdf = PDFDocument(url: url)
         screen.allowsDragging = true
-        screen.document = pdf
         pdfModel = PDFModel()
-        document = pdf
-        pdfModel!.lectureArray = ["Lecture1","Lecture2", "Lecture3"]
-        //previousLectureButton.isEnabled = false
-        populateLecturePullDown(list: pdfModel!.lectureArray)
         
-        populateSlideTimes(doc: document!)
         
         //Timer Stuff
         lectureTimer = LectureTimerModel()
@@ -67,6 +58,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     var autoPresent : Bool = false
     
+    var pdfArray = [PDFDocument]()
+    
     @IBOutlet weak var lectureLabel: NSTextField!
     
     @IBOutlet weak var pageLabel: NSTextField!
@@ -83,6 +76,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
         }
     }
     
+    
+    @IBAction func openLecture(_ sender: Any) {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = true
+        openPanel.canChooseFiles = true
+        openPanel.runModal()
+        let pdfURL = openPanel.urls
+        for url in pdfURL{
+            if url.absoluteString.hasSuffix("pdf"){
+                let doc = PDFDocument(url:url)!
+                pdfArray.append(doc)
+                screen.document = doc
+                pdfModel?.titleToDocumentDict["Lecture \(pdfArray.count)"] = doc
+                print(pdfModel!.titleToDocumentDict)
+            }
+            
+        }
+        //screen.document = pdfArray[0]
+        document = screen.document
+        populateSlideTimes(doc: document!)
+    }
     
     // go to next page of document and update current page reference
     @IBAction func nextPage(_ sender: Any) {
@@ -121,35 +135,34 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //removes all the bookmarks of the last lecture
     //tries to disable next ecture menu item if on last lecture
     @IBAction func nextLecture(_ sender: Any) {
-        lectureNum += 1
-        lectureLabel.stringValue = "Lecture  \(lectureNum)"
-        pageNum = 1
-        changePageDisplay(_: (Any).self)
-        previousLectureButton.isEnabled = true
-        let disable = pdfModel!.nextLecture(screen: screen)
-        bookmarkPullDown.removeAllItems()
-        if disable {
-            nextLectureButton.isEnabled = false
+        if lectureNum < pdfArray.count{
+            lectureNum += 1
+            lectureLabel.stringValue = "Lecture  \(lectureNum)"
+            pageNum = 1
+            changePageDisplay(_: (Any).self)
+        
+            screen.document = pdfArray[lectureNum]
+            document = screen.document
+            bookmarkPullDown.removeAllItems()
+            populateSlideTimes(doc: screen.document!)
         }
-        populateSlideTimes(doc: screen.document!)
     }
     
     //go to the previous lecture if possible
     //removes all the bookmarks of the last lecture
     //tries to disable previous menu item if on first lecture
     @IBAction func previousLecture(_ sender: Any) {
-        lectureNum += -1
-        lectureLabel.stringValue = "Lecture \(lectureNum)"
-        pageNum = 1
-        changePageDisplay(_: (Any).self)
-        nextLectureButton.isEnabled = true
-        let disable = pdfModel!.previousLecture(screen: screen)
-        bookmarkPullDown.removeAllItems()
-        if disable{
-            previousLectureButton.isEnabled = false
+        if lectureNum > 0{
+            lectureNum += -1
+            lectureLabel.stringValue = "Lecture \(lectureNum)"
+            pageNum = 1
+            changePageDisplay(_: (Any).self)
+        
+            screen.document = pdfArray[lectureNum]
+            document = screen.document
+            bookmarkPullDown.removeAllItems()
+            populateSlideTimes(doc: screen.document!)
         }
-        populateSlideTimes(doc: screen.document!)
-        document?.index
     }
     
     @IBOutlet weak var lectureMenuPullDown: NSPopUpButton!
@@ -160,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //reset the bookmark pull down menu
     @IBAction func skipToLecture(_ sender: Any) {
         let lecture = lectureMenuPullDown.selectedItem?.title
-        pdfModel!.skipToLecture(screen: screen, lecture: lecture!)
+        //pdfModel!.skipToLecture(screen: screen, lecture: lecture!)
         bookmarkPullDown.removeAllItems()
         populateSlideTimes(doc: screen.document!)
     }
@@ -329,7 +342,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
         timeDisplay.stringValue = time
         
         // this should fix page abel and num if user has scrolled
-        //updatePageVal()
+        updatePageVal()
         
     
     }
@@ -385,7 +398,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     @IBAction func updatePageDisplay(_ sender: Any) {
         
-        print(document!.page)
+        print(document!.pageCount)
         
         if let correctPageNum = document?.index(for: screen.currentPage!){
             print(document!, screen.currentPage!, correctPageNum, pageNum)
@@ -400,7 +413,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //updates every second to check if scrolling has changed the page num
     func updatePageVal(){
         if let correctPageNum = document?.index(for: screen.currentPage!){
-            print(document!.page(at:correctPageNum), pageNum, screen.currentPage!)
+            //print(document!.page(at:correctPageNum), pageNum, screen.currentPage!)
             if correctPageNum > 400 {return}
             
             pageNum = correctPageNum + 1

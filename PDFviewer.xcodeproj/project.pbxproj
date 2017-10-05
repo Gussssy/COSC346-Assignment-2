@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4C1E0B531F7F1E0D00F6B5E5 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1E0B521F7F1E0D00F6B5E5 /* Quartz.framework */; };
-		4C20BDC81F83689F00D78F3F /* Lecture2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C20BDC71F83689F00D78F3F /* Lecture2.pdf */; settings = {ASSET_TAGS = (New, ); }; };
-		4C20BDCA1F8368A600D78F3F /* Lecture3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C20BDC91F8368A600D78F3F /* Lecture3.pdf */; settings = {ASSET_TAGS = (New, ); }; };
 		4C20BDCC1F837BB000D78F3F /* LectureTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20BDCB1F837BB000D78F3F /* LectureTimerModel.swift */; };
 		4C20BDCE1F837E4C00D78F3F /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C20BDCD1F837E4C00D78F3F /* ToDo.txt */; };
 		4C3BD08B1F7CD4A00067DFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD08A1F7CD4A00067DFBE /* AppDelegate.swift */; };
 		4C3BD08F1F7CD4A00067DFBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD08E1F7CD4A00067DFBE /* Assets.xcassets */; };
 		4C3BD0A81F7CD4A00067DFBE /* PDFviewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BD0A71F7CD4A00067DFBE /* PDFviewerUITests.swift */; };
 		4C3BD0B61F7CD5140067DFBE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */; };
-		4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */; settings = {ASSET_TAGS = (New, ); }; };
+		4C66D2161F86416E009EBB03 /* Lecture1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C66D2151F86416E009EBB03 /* Lecture1.pdf */; settings = {ASSET_TAGS = (New, ); }; };
+		4C66D2181F864172009EBB03 /* Lecture2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C66D2171F864172009EBB03 /* Lecture2.pdf */; settings = {ASSET_TAGS = (New, ); }; };
+		4C66D21A1F864175009EBB03 /* Lecture3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4C66D2191F864175009EBB03 /* Lecture3.pdf */; settings = {ASSET_TAGS = (New, ); }; };
 		4CB0FEFF1F86209000069256 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB0FEFE1F86209000069256 /* Credits.rtf */; };
 		4CBD0C1E1F80C46D00C84ED6 /* PDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD0C1D1F80C46D00C84ED6 /* PDFModel.swift */; };
 /* End PBXBuildFile section */
@@ -40,8 +40,6 @@
 
 /* Begin PBXFileReference section */
 		4C1E0B521F7F1E0D00F6B5E5 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		4C20BDC71F83689F00D78F3F /* Lecture2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lecture2.pdf; sourceTree = "<group>"; };
-		4C20BDC91F8368A600D78F3F /* Lecture3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lecture3.pdf; sourceTree = "<group>"; };
 		4C20BDCB1F837BB000D78F3F /* LectureTimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureTimerModel.swift; sourceTree = "<group>"; };
 		4C20BDCD1F837E4C00D78F3F /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ToDo.txt; path = PDFviewer/ToDo.txt; sourceTree = "<group>"; };
 		4C3BD0871F7CD49F0067DFBE /* PDFviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +51,9 @@
 		4C3BD0A71F7CD4A00067DFBE /* PDFviewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFviewerUITests.swift; sourceTree = "<group>"; };
 		4C3BD0A91F7CD4A00067DFBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3BD0B51F7CD5140067DFBE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lecture1.pdf; sourceTree = "<group>"; };
+		4C66D2151F86416E009EBB03 /* Lecture1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lecture1.pdf; path = Lectures/Lecture1.pdf; sourceTree = "<group>"; };
+		4C66D2171F864172009EBB03 /* Lecture2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lecture2.pdf; path = Lectures/Lecture2.pdf; sourceTree = "<group>"; };
+		4C66D2191F864175009EBB03 /* Lecture3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lecture3.pdf; path = Lectures/Lecture3.pdf; sourceTree = "<group>"; };
 		4CB0FEFE1F86209000069256 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		4CBD0C1D1F80C46D00C84ED6 /* PDFModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,9 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				4C20BDCD1F837E4C00D78F3F /* ToDo.txt */,
-				4C50C8CF1F7F328B001296A5 /* Lecture1.pdf */,
-				4C20BDC71F83689F00D78F3F /* Lecture2.pdf */,
-				4C20BDC91F8368A600D78F3F /* Lecture3.pdf */,
+				4C66D2151F86416E009EBB03 /* Lecture1.pdf */,
+				4C66D2171F864172009EBB03 /* Lecture2.pdf */,
+				4C66D2191F864175009EBB03 /* Lecture3.pdf */,
 				4C3BD0891F7CD49F0067DFBE /* PDFviewer */,
 				4C3BD0A61F7CD4A00067DFBE /* PDFviewerUITests */,
 				4C3BD0881F7CD49F0067DFBE /* Products */,
@@ -249,13 +249,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C50C8D01F7F328B001296A5 /* Lecture1.pdf in Resources */,
-				4C20BDCA1F8368A600D78F3F /* Lecture3.pdf in Resources */,
+				4C66D2181F864172009EBB03 /* Lecture2.pdf in Resources */,
 				4C20BDCE1F837E4C00D78F3F /* ToDo.txt in Resources */,
 				4C3BD08F1F7CD4A00067DFBE /* Assets.xcassets in Resources */,
-				4C20BDC81F83689F00D78F3F /* Lecture2.pdf in Resources */,
+				4C66D21A1F864175009EBB03 /* Lecture3.pdf in Resources */,
 				4CB0FEFF1F86209000069256 /* Credits.rtf in Resources */,
 				4C3BD0B61F7CD5140067DFBE /* MainMenu.xib in Resources */,
+				4C66D2161F86416E009EBB03 /* Lecture1.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

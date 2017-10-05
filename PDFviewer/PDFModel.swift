@@ -19,9 +19,10 @@ public class PDFModel{
     var annotationsDict = Dictionary<PDFPage, String>()
     var lectureArray = Array<String>() //Hold file names for all the lectures inteded for use
     var currentLecture: Int = 0
-    var lectureNotes = Dictionary<String, String>()
+    var lectureNotes = Dictionary<PDFDocument, String>()
     var searchResults = Array<PDFSelection>()
     var currentResult: Int = 0
+    var titleToDocumentDict = Dictionary<String, PDFDocument>()
     
     //Go to next Page
     func next(screen: PDFView){
@@ -45,50 +46,6 @@ public class PDFModel{
             screen.goToNextPage(_: (Any).self)
             i+=1
         }
-    }
-    
-    // Go to next lecture return true to disable next lecture
-    func nextLecture(screen: PDFView) -> Bool{
-        if currentLecture >= lectureArray.count - 1{
-            return true
-        }
-        currentLecture += 1
-        let lecture = lectureArray[currentLecture]
-        
-        //create a file path to the lecture
-        
-        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
-        let pdf = PDFDocument(url: url)
-        screen.document = pdf
-        if currentLecture == lectureArray.count - 1{
-            return true
-        }
-        return false
-    }
-    
-    // Go to previous Lecture return True if the previousLecture button should be disabled
-    func previousLecture(screen: PDFView) -> Bool{
-        if currentLecture <= 0{
-            return true
-        }
-        currentLecture += -1
-        let lecture = lectureArray[currentLecture]
-        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
-        let pdf = PDFDocument(url: url)
-        screen.document = pdf
-        if currentLecture == 0{
-            return true
-        }
-        return false
-    }
-    
-    //Jump to desired lecture - selected by drop down menu
-    func skipToLecture(screen: PDFView, lecture: String){
-        if lecture == "Lectures"{ return}
-        let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
-        let pdf = PDFDocument(url: url)
-        screen.document = pdf
-        currentLecture = lectureArray.index(of: lecture)!
     }
     
     func zoomIn(screen: PDFView){
@@ -124,20 +81,19 @@ public class PDFModel{
     
     // add notes about the lecture
     func annotateLecture(screen: PDFView, comment: String){
-        let doc = lectureArray[currentLecture]
-        if let message = lectureNotes[doc]{
-            lectureNotes[doc] = message + " \(comment)"
+        let doc = screen.document
+        if let message = lectureNotes[doc!]{
+            lectureNotes[doc!] = message + " \(comment)"
         }
         else{
-            lectureNotes[doc] = comment
+            lectureNotes[doc!] = comment
         }
     }
     
     //bring up notes about the lecture
     func readLectureNotes(screen: PDFView) -> String{
-        let doc = lectureArray[currentLecture]
-        if let notes = lectureNotes[doc]{
-            print(notes)
+        let doc = screen.document
+        if let notes = lectureNotes[doc!]{
             return notes
         }
         return ""
@@ -176,4 +132,60 @@ public class PDFModel{
             screen.go(to: searchResults[currentResult])
         }
     }
+    
+    /////////////////////////////////////////////////////////
+    //                 Annotation Storage                  //
+    /////////////////////////////////////////////////////////
+    
+    func storeLectureAnnotation(screen : PDFView, annotation : String){
+        
+        //Create a file named after the Lecture Name and Page number
+        let lectureName : String = lectureArray[currentLecture]
+        let fileName : String =  lectureName
+        let file = fileName
+        
+        //What does this really do
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+            
+            //the files url
+            let fileURL = dir.appendingPathComponent(file)
+            
+            do {
+                
+                try annotation.write(to: fileURL, atomically: false, encoding: .utf8)
+                print("Saving to: \(fileURL)")
+                
+            } catch{print("Error")}
+            
+        }
+        
+        
+    }//end of function
+    
+    
+    func storePageAnnotation(screen : PDFView, annotation : String){
+        //Create a file named after the Lecture Name and Page number
+        let pageNum : Int = (screen.document?.index(for : screen.currentPage!))!
+        let lectureName : String = lectureArray[currentLecture]
+        let fileName : String =  lectureName + " Page " + String(pageNum)
+        let file = fileName
+        
+        //What does this really do
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+            
+            //the files url
+            let fileURL = dir.appendingPathComponent(file)
+            
+            do {
+                
+                try annotation.write(to: fileURL, atomically: false, encoding: .utf8)
+                print("Saving to: \(fileURL)")
+                
+            } catch{print("Error")}
+            
+        }
+        
+        
+    }//end of function
+    
 }
