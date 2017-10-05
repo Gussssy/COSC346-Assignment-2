@@ -88,8 +88,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
                 let doc = PDFDocument(url:url)!
                 pdfArray.append(doc)
                 screen.document = doc
-                pdfModel?.titleToDocumentDict["Lecture \(pdfArray.count)"] = doc
+                pdfModel?.titleToDocumentDict[doc] = url.lastPathComponent
+                print(url.lastPathComponent)
                 print(pdfModel!.titleToDocumentDict)
+                lectureMenuPullDown.addItem(withTitle: "\(pdfArray.count)")
             }
             
         }
@@ -174,8 +176,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //resets the slide delays
     //reset the bookmark pull down menu
     @IBAction func skipToLecture(_ sender: Any) {
-        let lecture = lectureMenuPullDown.selectedItem?.title
-        //pdfModel!.skipToLecture(screen: screen, lecture: lecture!)
+        let lectureIndex = lectureMenuPullDown.selectedItem?.title
+        document = pdfArray[Int(lectureIndex!)! - 1]
+        screen.document = document
         bookmarkPullDown.removeAllItems()
         populateSlideTimes(doc: screen.document!)
     }

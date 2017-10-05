@@ -22,7 +22,7 @@ public class PDFModel{
     var lectureNotes = Dictionary<PDFDocument, String>()
     var searchResults = Array<PDFSelection>()
     var currentResult: Int = 0
-    var titleToDocumentDict = Dictionary<String, PDFDocument>()
+    var titleToDocumentDict = Dictionary<PDFDocument, String>()
     
     //Go to next Page
     func next(screen: PDFView){
