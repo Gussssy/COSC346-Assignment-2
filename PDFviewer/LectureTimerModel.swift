@@ -62,7 +62,7 @@ public class LectureTimerModel : NSObject {
     // Function that updates the time every 60 seconds FIX THIS
     public func updateTime(_ theTimer:Foundation.Timer){
     
-        print("updateTime inside timermodel has been called, seconds: \(seconds)")
+        //print("updateTime inside timermodel has been called, seconds: \(seconds)")
        seconds += 1
         if (seconds == 60){
             seconds = 0

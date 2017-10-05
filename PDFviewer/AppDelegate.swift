@@ -293,7 +293,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //call back function
     public func updateTimeDisplay(_ time : String){
     
-        print("This function has been called and the time is \(time)")
+        //print("This function has been called and the time is \(time)")
         timeDisplay.stringValue = time
         
     
