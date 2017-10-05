@@ -9,37 +9,35 @@
 import Foundation
 import Quartz
 
-public protocol PDFModelDelegate{
-    func nextPage(_ sender: Any)
-    func previousPage(_ sender: Any)
-    func jumpToPage(_ sender: Any)
-}
 
 public class PDFModel{
+    
+    // Instance variables
     
     var bookmarks: Array<PDFPage> = Array()
     var currentMark: Int = 0
     var annotationsDict = Dictionary<PDFPage, String>()
-    var lectureArray = Array<String>()
+    var lectureArray = Array<String>() //Hold file names for all the lectures inteded for use
     var currentLecture: Int = 0
     var lectureNotes = Dictionary<String, String>()
     var searchResults = Array<PDFSelection>()
     var currentResult: Int = 0
     
+    //Go to next Page
     func next(screen: PDFView){
         if screen.canGoToNextPage(){
             screen.goToNextPage(_ : (Any).self)
-            //pageNum += 1
-            //changePageDisplay(_ : (Any).self)
             }
         }
     
+    //Go to previous Page
     func previous(screen: PDFView){
         if screen.canGoToPreviousPage(){
             screen.goToPreviousPage(_ : (Any).self)
         }
     }
     
+    // Skip to page of given number
     func jump(screen: PDFView, num: Int){
         screen.goToFirstPage(_ : (Any).self)
         var i = 1
@@ -49,13 +47,16 @@ public class PDFModel{
         }
     }
     
-    // return True if the nextLecture button should be disabled
+    // Go to next lecture return true to disable next lecture
     func nextLecture(screen: PDFView) -> Bool{
         if currentLecture >= lectureArray.count - 1{
             return true
         }
         currentLecture += 1
         let lecture = lectureArray[currentLecture]
+        
+        //create a file path to the lecture
+        
         let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
         let pdf = PDFDocument(url: url)
         screen.document = pdf
@@ -65,7 +66,7 @@ public class PDFModel{
         return false
     }
     
-    // return True if the previousLecture button should be disabled
+    // Go to previous Lecture return True if the previousLecture button should be disabled
     func previousLecture(screen: PDFView) -> Bool{
         if currentLecture <= 0{
             return true
@@ -81,6 +82,7 @@ public class PDFModel{
         return false
     }
     
+    //Jump to desired lecture - selected by drop down menu
     func skipToLecture(screen: PDFView, lecture: String){
         if lecture == "Lectures"{ return}
         let url = NSURL.fileURL(withPath: Bundle.main.path(forResource: lecture, ofType: "pdf")!)
@@ -101,6 +103,7 @@ public class PDFModel{
         }
     }
     
+    // save annotation of page - currently always adds with no editing supported
     func annotate(page: PDFPage, comment: String){
         if let messages = annotationsDict[page]{
             annotationsDict[page] = messages + " \(comment)"
@@ -110,6 +113,7 @@ public class PDFModel{
         }
     }
     
+    //brings up annotations - not yet editable
     func readAnnoations(screen: PDFView) -> String{
         let page = screen.currentPage
         if let annotation = annotationsDict[page!]{
@@ -118,6 +122,7 @@ public class PDFModel{
         return ""
     }
     
+    // add notes about the lecture
     func annotateLecture(screen: PDFView, comment: String){
         let doc = lectureArray[currentLecture]
         if let message = lectureNotes[doc]{
@@ -128,6 +133,7 @@ public class PDFModel{
         }
     }
     
+    //bring up notes about the lecture
     func readLectureNotes(screen: PDFView) -> String{
         let doc = lectureArray[currentLecture]
         if let notes = lectureNotes[doc]{
@@ -137,19 +143,24 @@ public class PDFModel{
         return ""
     }
     
+    // add page into bookmark array
     func bookmarkPage(page: PDFPage){
         bookmarks.append(page)
     }
     
+    // jump to desired bookmarked page - choice is last clicked option in pull down menu
     func bookmarkSkip(screen: PDFView, mark: Int){
         if !bookmarks.isEmpty{
             screen.go(to: bookmarks[mark-1])
         }
     }
     
+    //search document - not including annotations - for term in text box
+    //generates a list of the selections including the term
+    //returns number of times term was found - currently case sensitive
     func find(screen: PDFView, term: String) -> Int{
         let doc = screen.document
-        let selections = doc?.findString(term, withOptions: 0)
+        let selections = doc?.findString(term, withOptions: 0) //Options are not explained so we chose option 0
         searchResults = selections!
         if selections != nil && selections!.count > 0{
             screen.go(to: selections![0])
@@ -158,6 +169,7 @@ public class PDFModel{
         return 0
     }
     
+    // step through search selections one by one
     func nextSearchResult(screen: PDFView){
         currentResult += 1
         if currentResult <= searchResults.count-1{
