@@ -93,7 +93,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
             }
             
         }
-        //screen.document = pdfArray[0]
         document = screen.document
         populateSlideTimes(doc: document!)
     }
@@ -137,7 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     @IBAction func nextLecture(_ sender: Any) {
         if lectureNum < pdfArray.count{
             lectureNum += 1
-            lectureLabel.stringValue = "Lecture  \(lectureNum)"
+            lectureLabel.stringValue = "Lecture  \(lectureNum + 1)"
             pageNum = 1
             changePageDisplay(_: (Any).self)
         
@@ -358,8 +357,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //add the next delay into the total if slide is switched
     // is called every second by the timer to check if slide should change
     func autoUpdateSlide(){
+        if document == nil{return}
         if lectureTimer!.secondsElapsed >= timeTotal{
             nextPage(_: (Any).self)
+            print(slideTimes)
             timeTotal += slideTimes[pageNum - 1]
         }
     }
@@ -378,7 +379,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     //change the delay time of the current slide
     @IBAction func updateSlideDelay(_ sender: Any) {
-        slideTimes[pageNum] = Int(slideDelayEntry.intValue)
+        slideTimes[pageNum - 1] = Int(slideDelayEntry.intValue)
         //slideTimes[(document?.index(for: screen.currentPage!))!] = Int(slideDelayEntry.intValue)
         //print(slideTimes)
     }
@@ -396,18 +397,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     }
     
     
-    @IBAction func updatePageDisplay(_ sender: Any) {
-        
-        print(document!.pageCount)
-        
-        if let correctPageNum = document?.index(for: screen.currentPage!){
-            print(document!, screen.currentPage!, correctPageNum, pageNum)
-            if correctPageNum > 400 {return}
-            
-            pageNum = correctPageNum + 1
-            changePageDisplay(_:(Any).self)
-        }
-    }
     
     //set page label and pageNum to correct item
     //updates every second to check if scrolling has changed the page num
