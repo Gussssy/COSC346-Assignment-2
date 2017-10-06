@@ -140,7 +140,7 @@ public class PDFModel{
     func storeLectureAnnotation(screen : PDFView, annotation : String){
         
         //Create a file named after the Lecture Name and Page number
-        let lectureName : String = lectureArray[currentLecture]
+        let lectureName : String = titleToDocumentDict[screen.document!]!
         let fileName : String =  lectureName
         let file = fileName
         
@@ -165,8 +165,10 @@ public class PDFModel{
     
     func storePageAnnotation(screen : PDFView, annotation : String){
         //Create a file named after the Lecture Name and Page number
-        let pageNum : Int = (screen.document?.index(for : screen.currentPage!))!
-        let lectureName : String = lectureArray[currentLecture]
+        
+        if screen.document == nil {return}
+        let pageNum : Int = (screen.document?.index(for : screen.currentPage!))! + 1
+        let lectureName : String = titleToDocumentDict[screen.document!]!
         let fileName : String =  lectureName + " Page " + String(pageNum)
         let file = fileName
         
@@ -187,5 +189,79 @@ public class PDFModel{
         
         
     }//end of function
+    
+    
+    //FUNC: readLectureAnnotation
+    //  Reads Lecture annotation from text file if present
+    //  returns the text file contents or empty string
+    func readLectureAnnotation(screen : PDFView)-> String{
+        
+        // To store the read string
+        var readText : String = ""
+        
+        
+        //Determine file name to be read from the current page
+        let lectureName : String = titleToDocumentDict[screen.document!]!
+        let fileName : String =  lectureName
+        let file = fileName
+        
+        //What does this really do
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+            
+            //the files url
+            let fileURL = dir.appendingPathComponent(file)
+            
+            // Attempt to read from file
+            do {
+                
+                readText = try String(contentsOf: fileURL, encoding: .utf8)
+                print("I have read text from file: \(read) ")
+                
+            } catch{print("No Annotation Found")}
+            
+            //No text file was found, return empty string
+            return readText
+        }
+        //Text file was found, returns the contents
+        return readText
+        
+    }//end of function
+    
+    
+    func readPageAnnotation(screen : PDFView) -> String{
+        
+        // To store the read string
+        var readText : String = ""
+        
+        
+        //Determine file name to be read from the current page
+        let lectureName : String = titleToDocumentDict[screen.document!]!
+        let pageNum : Int = (screen.document?.index(for : screen.currentPage!))! + 1
+        let fileName : String =  lectureName + " Page " + String(pageNum)
+        let file = fileName
+        
+        //What does this really do
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+            
+            //the files url
+            let fileURL = dir.appendingPathComponent(file)
+            
+            // Attempt to read from file
+            do {
+                
+                readText = try String(contentsOf: fileURL, encoding: .utf8)
+                print("I have read text from file: \(read) ")
+                
+            } catch{print("No Annotation Found")}
+            
+            //
+            return readText
+        }
+        
+        return readText
+    }
+    
+
+    
     
 }

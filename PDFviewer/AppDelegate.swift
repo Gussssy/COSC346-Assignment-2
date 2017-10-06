@@ -88,8 +88,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
                 let doc = PDFDocument(url:url)!
                 pdfArray.append(doc)
                 screen.document = doc
-                pdfModel?.titleToDocumentDict[doc] = url.lastPathComponent
-                print(url.lastPathComponent)
+                let path = url.lastPathComponent
+                let i = url.lastPathComponent.characters.count - 3
+                let end = path.index(path.endIndex, offsetBy: -4)
+                pdfModel?.titleToDocumentDict[doc] = path.substring(to: end)
+                print(url.lastPathComponent.substring(to: end))
                 print(pdfModel!.titleToDocumentDict)
                 lectureMenuPullDown.addItem(withTitle: "\(pdfArray.count)")
             }
@@ -200,20 +203,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     //annotate the current page
     @IBAction func annotate(_ sender: Any) {
-        if pdfModel != nil{
+       
+        pdfModel!.storePageAnnotation(screen: screen, annotation: annotation.stringValue)
+        
+        /* if pdfModel != nil{
             if let page = screen.currentPage{
                 let words = String(annotation.stringValue)
                 pdfModel!.annotate(page: page, comment: words!)
                 annotation.stringValue = ""
             }
-        }
+        }*/
         
     }
     
     // read the current pages annotations if any into the text entry bar
     @IBAction func readAnnotation(_ sender: Any) {
-        let note = pdfModel!.readAnnoations(screen: screen)
-        annotation.stringValue = note
+        
+        let read = pdfModel!.readPageAnnotation(screen: screen)
+        annotation.stringValue = read
+        
+        /*let note = pdfModel!.readAnnoations(screen: screen)
+        annotation.stringValue = note*/
     }
     
     //adds annotation to lecture
