@@ -255,6 +255,25 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Present" id="TFy-Gh-QvO">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Present" systemMenu="window" id="CQl-47-cwq">
+                        <items>
+                            <menuItem title="Present" id="Het-hu-PeM">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="autoPresent:" target="26q-3P-Sgf" id="wSX-N2-wxn"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Update Slide Delay" id="8rH-Bc-Xgd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="updateSlideDelay:" target="26q-3P-Sgf" id="hq3-jm-QT1"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="-284" y="-46"/>
         </menu>
