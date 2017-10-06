@@ -89,11 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
                 pdfArray.append(doc)
                 screen.document = doc
                 let path = url.lastPathComponent
-                let i = url.lastPathComponent.characters.count - 3
                 let end = path.index(path.endIndex, offsetBy: -4)
                 pdfModel?.titleToDocumentDict[doc] = path.substring(to: end)
-                print(url.lastPathComponent.substring(to: end))
-                print(pdfModel!.titleToDocumentDict)
                 lectureMenuPullDown.addItem(withTitle: "\(pdfArray.count)")
             }
             
@@ -180,6 +177,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //reset the bookmark pull down menu
     @IBAction func skipToLecture(_ sender: Any) {
         let lectureIndex = lectureMenuPullDown.selectedItem?.title
+        if lectureIndex == "Lectures" {return}
         document = pdfArray[Int(lectureIndex!)! - 1]
         screen.document = document
         bookmarkPullDown.removeAllItems()

@@ -133,10 +133,14 @@ public class PDFModel{
         }
     }
     
+    
+    
     /////////////////////////////////////////////////////////
     //                 Annotation Storage                  //
     /////////////////////////////////////////////////////////
     
+    
+    // FUNCTION:  Stores annotation assocated with a particular page and lecture
     func storeLectureAnnotation(screen : PDFView, annotation : String){
         
         //Create a file named after the Lecture Name and Page number
@@ -144,8 +148,8 @@ public class PDFModel{
         let fileName : String =  lectureName
         let file = fileName
         
-        //What does this really do
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+        //Create or accesss exisiting file and store text by overwriting anything prexisting
+        if let dir = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask).first{
             
             //the files url
             let fileURL = dir.appendingPathComponent(file)
