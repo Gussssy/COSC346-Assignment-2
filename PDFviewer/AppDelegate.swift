@@ -13,6 +13,11 @@ import Quartz
 //Remove this ??
 import Foundation
 
+//AppDelegate handles all interactions between the user and the program
+//Decides if actions must be sent along to the PDFModel i.e. in order to change page or need to activate LectureTimerModel i.e. to start the timer
+//keep track of all the lectures loaded into the program in pdfArray for use in the lecture navigation
+//regularly updates page and lecture displays and accepts entry for notes and search term
+//Handles the opening and loading of pdf files into the PDFView object - "screen"
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
@@ -76,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
         }
     }
     
-    
+    //Opens documents via the menu - open
     @IBAction func openLecture(_ sender: Any) {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = true
@@ -123,6 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     // skip to page indicated by pageNumberEntry if possible
     @IBAction func jumpToPage(_ sender: Any) {
+        if screen.document == nil{return}
         document = screen.document
         let num = Int(pageNumberEntry.stringValue)
         if  0 < num! && num! <= (document!.pageCount){
@@ -137,6 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //removes all the bookmarks of the last lecture
     //tries to disable next ecture menu item if on last lecture
     @IBAction func nextLecture(_ sender: Any) {
+        if screen.document == nil{return}
         if lectureNum < pdfArray.count - 1{
             lectureNum += 1
             lectureLabel.stringValue = "Lecture  \(lectureNum + 1)"
@@ -155,6 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //removes all the bookmarks of the last lecture
     //tries to disable previous menu item if on first lecture
     @IBAction func previousLecture(_ sender: Any) {
+        if screen.document == nil{return}
         if lectureNum > 0{
             lectureNum += -1
             lectureLabel.stringValue = "Lecture \(lectureNum + 1)"
@@ -374,15 +382,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
         if document == nil{return}
         if lectureTimer!.secondsElapsed >= timeTotal{
             nextPage(_: (Any).self)
-            print(slideTimes)
             timeTotal += slideTimes[pageNum - 1]
         }
     }
     
     @IBOutlet weak var slideDelayEntry: NSTextField!
     
-    //creates a list of slide delays - default is 10 seconds until manually overridden
+    //creates a list of slide delays - default is 10 seconds/slide until manually overridden
     func populateSlideTimes(doc: PDFDocument){
+        slideTimes.removeAll()
         var i = 0
         //make the list as long as the amount of pages in the document
         while i < doc.pageCount{
@@ -393,13 +401,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     
     //change the delay time of the current slide
     @IBAction func updateSlideDelay(_ sender: Any) {
-        slideTimes[pageNum - 1] = Int(slideDelayEntry.intValue)
-        //slideTimes[(document?.index(for: screen.currentPage!))!] = Int(slideDelayEntry.intValue)
-        //print(slideTimes)
+        if slideTimes.count > pageNum - 1{
+            slideTimes[pageNum - 1] = Int(slideDelayEntry.intValue)
+        }
     }
     
     //start the automatic prsentation
     @IBAction func autoPresent(_ sender: Any) {
+        if screen.document == nil{return}
         resetTimer((Any).self)
         startTimer((Any).self)
         autoPresent = true
@@ -423,6 +432,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
             changePageDisplay(_:(Any).self)
         }
     }
+    
     
 }
 

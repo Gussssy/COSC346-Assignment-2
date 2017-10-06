@@ -11,6 +11,8 @@ import Quartz
 
 
 public class PDFModel{
+    // Class handles much of the changing of PDF view object instantiated in AppDelegate
+    //Stores the bookmarks, lecture and annotation notes, along with other variable to keep track of the presentations place witrhin the document
     
     // Instance variables
     
@@ -22,6 +24,8 @@ public class PDFModel{
     var lectureNotes = Dictionary<PDFDocument, String>()
     var searchResults = Array<PDFSelection>()
     var currentResult: Int = 0
+    
+    //name no longer accurate - keys = documents, Values = name of file
     var titleToDocumentDict = Dictionary<PDFDocument, String>()
     
     //Go to next Page
@@ -60,44 +64,6 @@ public class PDFModel{
         }
     }
     
-    // save annotation of page - currently always adds with no editing supported
-    func annotate(page: PDFPage, comment: String){
-        if let messages = annotationsDict[page]{
-            annotationsDict[page] = messages + " \(comment)"
-        }
-        else{
-            annotationsDict[page] = comment
-        }
-    }
-    
-    //brings up annotations - not yet editable
-    func readAnnoations(screen: PDFView) -> String{
-        let page = screen.currentPage
-        if let annotation = annotationsDict[page!]{
-            return annotation
-        }
-        return ""
-    }
-    
-    // add notes about the lecture
-    func annotateLecture(screen: PDFView, comment: String){
-        let doc = screen.document
-        if let message = lectureNotes[doc!]{
-            lectureNotes[doc!] = message + " \(comment)"
-        }
-        else{
-            lectureNotes[doc!] = comment
-        }
-    }
-    
-    //bring up notes about the lecture
-    func readLectureNotes(screen: PDFView) -> String{
-        let doc = screen.document
-        if let notes = lectureNotes[doc!]{
-            return notes
-        }
-        return ""
-    }
     
     // add page into bookmark array
     func bookmarkPage(page: PDFPage){
@@ -115,6 +81,7 @@ public class PDFModel{
     //generates a list of the selections including the term
     //returns number of times term was found - currently case sensitive
     func find(screen: PDFView, term: String) -> Int{
+        if screen.document == nil{return 0}
         let doc = screen.document
         let selections = doc?.findString(term, withOptions: 0) //Options are not explained so we chose option 0
         searchResults = selections!
@@ -144,6 +111,7 @@ public class PDFModel{
     func storeLectureAnnotation(screen : PDFView, annotation : String){
         
         //Create a file named after the Lecture Name and Page number
+        if screen.document == nil{return}
         let lectureName : String = titleToDocumentDict[screen.document!]!
         let fileName : String =  lectureName
         let file = fileName
@@ -157,7 +125,7 @@ public class PDFModel{
             do {
                 
                 try annotation.write(to: fileURL, atomically: false, encoding: .utf8)
-                print("Saving to: \(fileURL)")
+                //print("Saving to: \(fileURL)")
                 
             } catch{print("Error")}
             
@@ -185,7 +153,7 @@ public class PDFModel{
             do {
                 
                 try annotation.write(to: fileURL, atomically: false, encoding: .utf8)
-                print("Saving to: \(fileURL)")
+                //print("Saving to: \(fileURL)")
                 
             } catch{print("Error")}
             
@@ -199,7 +167,7 @@ public class PDFModel{
     //  Reads Lecture annotation from text file if present
     //  returns the text file contents or empty string
     func readLectureAnnotation(screen : PDFView)-> String{
-        
+        if screen.document == nil{return ""}
         // To store the read string
         var readText : String = ""
         
@@ -219,12 +187,12 @@ public class PDFModel{
             do {
                 
                 readText = try String(contentsOf: fileURL, encoding: .utf8)
-                print("I have read text from file: \(read) ")
+                //print("I have read text from file: \(read) ")
                 
-            } catch{print("No Annotation Found")}
+            } catch{}
             
             //No text file was found, return empty string
-            return readText
+            return "No Annotation Found"
         }
         //Text file was found, returns the contents
         return readText
@@ -233,7 +201,7 @@ public class PDFModel{
     
     
     func readPageAnnotation(screen : PDFView) -> String{
-        
+        if screen.document == nil{return ""}
         // To store the read string
         var readText : String = ""
         
@@ -254,12 +222,12 @@ public class PDFModel{
             do {
                 
                 readText = try String(contentsOf: fileURL, encoding: .utf8)
-                print("I have read text from file: \(read) ")
+                //print("I have read text from file: \(read) ")
                 
-            } catch{print("No Annotation Found")}
+            } catch{}
             
             //
-            return readText
+            return "No Annotation Found"
         }
         
         return readText
