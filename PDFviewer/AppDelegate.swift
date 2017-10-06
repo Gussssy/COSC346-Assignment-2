@@ -227,13 +227,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, LectureTimerDelegate {
     //adds annotation to lecture
     @IBAction func annotateLecture(_ sender: Any) {
         let comment = annotation.stringValue
-        pdfModel!.annotateLecture(screen: screen, comment: comment)
+        pdfModel!.storeLectureAnnotation(screen: screen, annotation: comment)
         annotation.stringValue = ""
     }
     
     //brings up lecture annotations
     @IBAction func readLectureNotes(_ sender: Any) {
-        let notes = pdfModel!.readLectureNotes(screen: screen)
+        let notes = pdfModel!.readLectureAnnotation(screen: screen)
         annotation.stringValue = notes
     }
     

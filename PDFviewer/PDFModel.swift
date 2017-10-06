@@ -149,7 +149,7 @@ public class PDFModel{
         let file = fileName
         
         //Create or accesss exisiting file and store text by overwriting anything prexisting
-        if let dir = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask).first{
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
             
             //the files url
             let fileURL = dir.appendingPathComponent(file)
