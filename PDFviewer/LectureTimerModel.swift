@@ -2,6 +2,11 @@
 //  LectureTimerModel.swift
 //  PDFviewer
 //
+//  Adapted from Lech Szymanski Desgin and David Eyers Swift Implememntation
+//
+// Provides timer functionality for several feature of the PDFViewr such as the Timer, The time
+//  display, auto presentation mode, and regular updates of the navigation labels on the GUI
+//
 //  Created by Angus McMillan on 10/3/17.
 //  Copyright © 2017 Tristan Gardner. All rights reserved.
 //
@@ -110,7 +115,7 @@ public class LectureTimerModel : NSObject {
     }
     
     
-    
+    // Start the lecture timer
     public func start() {
         if(running) { return }
         
@@ -130,14 +135,14 @@ public class LectureTimerModel : NSObject {
     
     
     
-    
+    // Stop the Timer
     public func stop() {
         stopping = true
     }
     
     
     
-    
+    // Reset the Timer
     public func reset() {
         secondsElapsed = 0
         alertDelegateTimer()
